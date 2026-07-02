@@ -1,0 +1,90 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 120px;
+  z-index: 999;
+}
+
+.palette {
+  width: min(650px, 92vw);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  animation: paletteShow 0.2s ease;
+}
+
+.input {
+  width: 100%;
+  padding: 20px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.results {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.results:hover {
+  background: rgba(124, 92, 255, 0.08);
+}
+.commandItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.commandItem:hover {
+  background: rgba(124, 92, 255, 0.1);
+  color: var(--primary);
+}
+
+.commandItem:focus {
+  outline: none;
+  background: rgba(124, 92, 255, 0.12);
+}
+.empty {
+  padding: 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+.active {
+  background: rgba(124, 92, 255, 0.15);
+  color: var(--primary);
+}
+@keyframes paletteShow {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,21 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+/* استایل های اسکلت لودینگ */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item {
+  display: flex;
+  gap: 14px;
+}
+
+.content {
+  flex: 1;
+}

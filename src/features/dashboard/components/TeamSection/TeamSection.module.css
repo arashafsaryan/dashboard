@@ -1,0 +1,29 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+.updated {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* استایل های اسکلت لودینگ */
+.member {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

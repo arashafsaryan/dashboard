@@ -1,0 +1,68 @@
+.container {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  width: min(520px, calc(100vw - 32px));
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--card);
+  box-shadow: var(--shadow-md);
+  z-index: 999;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--warning);
+}
+
+.left span {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.cancel,
+.save {
+  height: 38px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cancel {
+  background: transparent;
+  color: var(--muted);
+}
+
+.cancel:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.save {
+  background: var(--primary);
+  color: white;
+}
+
+.save:hover {
+  background: var(--primary-hover);
+}

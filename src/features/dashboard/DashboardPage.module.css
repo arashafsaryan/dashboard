@@ -1,0 +1,75 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+.subtitle {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.kpiSection {
+  min-height: 120px;
+}
+
+.analyticsSection {
+  min-height: 350px;
+}
+
+.bottomGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.activitySection,
+.teamSection,
+.aiSection {
+  min-height: 300px;
+
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+
+  padding: 20px;
+}
+
+/* ==========================
+   Tablet
+========================== */
+
+@media (max-width: 1350px) {
+  .bottomGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .aiSection {
+    grid-column: span 2;
+  }
+  .activitySection,
+  .teamSection,
+  .aiSection {
+    min-height: 380px;
+  }
+}
+
+/* ==========================
+   Mobile
+========================== */
+
+@media (max-width: 1000px) {
+  .bottomGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .aiSection {
+    grid-column: auto;
+  }
+}

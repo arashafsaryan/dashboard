@@ -1,0 +1,118 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition:
+    transform 0.25s,
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* icons style */
+
+.icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(124, 92, 255, 0.18),
+    rgba(124, 92, 255, 0.08)
+  );
+  border: 1px solid rgba(124, 92, 255, 0.18);
+  flex-shrink: 0;
+  transition: 0.3s;
+}
+.card:hover .icon {
+  transform: scale(1.06);
+  rotate: 6deg;
+}
+.icon svg {
+  width: 20px;
+  height: 20px;
+  font-size: 22px;
+  transition: 0.35s;
+}
+.revenue {
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+}
+.card:hover .revenue {
+  background: rgba(34, 197, 94, 0.18);
+  box-shadow: 0 0 22px rgba(34, 197, 94, 0.25);
+}
+.users {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+}
+.card:hover .users {
+  background: rgba(59, 130, 246, 0.18);
+  box-shadow: 0 0 22px rgba(59, 130, 246, 0.25);
+}
+.projects {
+  background: rgba(124, 92, 255, 0.12);
+  color: #7c5cff;
+}
+.card:hover .projects {
+  background: rgba(124, 92, 255, 0.18);
+  box-shadow: 0 0 22px rgba(124, 92, 255, 0.25);
+}
+.growth {
+  background: rgba(249, 115, 22, 0.12);
+  color: #f97316;
+}
+.card:hover .growth {
+  background: rgba(249, 115, 22, 0.18);
+  box-shadow: 0 0 22px rgba(249, 115, 22, 0.25);
+}
+
+/* icons style */
+
+.value {
+  font-size: 40px;
+  letter-spacing: -1px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.change {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.compare {
+  color: var(--muted);
+  font-size: 13px;
+}
+.up {
+  color: #22c55e;
+}
+
+.down {
+  color: #ef4444;
+}

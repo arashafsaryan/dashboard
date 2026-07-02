@@ -1,0 +1,50 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select {
+  width: 100%;
+  height: 42px;
+  padding: 0 40px 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  appearance: none;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.select:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.select:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.error .select {
+  border-color: var(--danger);
+}

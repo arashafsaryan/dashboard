@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+}
+
+.button {
+  position: relative;
+  width: 50px;
+  height: 38px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  color: var(--muted);
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.button span {
+  position: relative;
+  z-index: 2;
+}
+
+.active {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7c5cff, #5b7cff);
+  box-shadow: 0 8px 25px rgba(124, 92, 255, 0.35);
+}
+
+.activeText {
+  color: white;
+}

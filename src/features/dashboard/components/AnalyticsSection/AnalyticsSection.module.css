@@ -1,0 +1,23 @@
+.analytics {
+  padding: 24px;
+  flex-wrap: wrap;
+}
+
+/* skeletonHeader loading */
+.skeletonHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+@media (max-width: 650px) {
+  .skeletonHeader {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.skeletonActions {
+  display: flex;
+  gap: 8px;
+}
