@@ -1,17 +1,8 @@
-import {
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-} from "recharts";
+import { ResponsiveContainer, AreaChart, Area } from "recharts";
 
-export default function SparklineChart({
-  data,
-}) {
+export default function SparklineChart({ data }) {
   return (
-    <ResponsiveContainer
-      width="100%"
-      height={60}
-    >
+    <ResponsiveContainer width="100%" height={60}>
       <AreaChart data={data}>
         <Area
           type="monotone"

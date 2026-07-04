@@ -5,7 +5,6 @@
   border-radius: 12px;
   cursor: pointer;
   background: var(--card);
-  color: var(--text);
   border: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -15,6 +14,7 @@
 .button:hover {
   transform: translateY(-2px);
 }
-.button svg{
+.button svg {
+  color: var(--text);
   font-size: 18px;
 }

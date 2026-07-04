@@ -1,14 +1,14 @@
 .list {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 100%;
-}
-/* استایل های اسکلت لودینگ */
-.list {
-  display: flex;
-  flex-direction: column;
   gap: 16px;
+  min-width: 0;
+}
+
+@media (max-width: 767px) {
+  .list {
+    gap: 12px;
+  }
 }
 
 .item {

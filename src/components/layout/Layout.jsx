@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-import Header from "./Header";
+import Header from "./Header/Header";
 import CommandPalette from "../ui/CommandPalette/CommandPalette";
 import styles from "./Layout.module.css";
 
@@ -17,15 +17,7 @@ export default function Layout({ children }) {
       <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
       <div className={styles.mainContent}>
         <Header />
-        <main
-          style={{
-            flex: 1,
-            padding: "24px",
-            background: "var(--bg)",
-          }}
-        >
-          {children}
-        </main>
+        <main className={styles.main}>{children}</main>
       </div>
         <CommandPalette />
     </div>

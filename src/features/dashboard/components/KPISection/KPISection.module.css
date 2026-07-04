@@ -1,25 +1,75 @@
+.container {
+  container-type: inline-size;
+  container-name: kpi;
+  width: 100%;
+  min-width: 0;
+}
+
 .grid {
   display: grid;
-
-  grid-template-columns: repeat(4, 1fr);
-
-  gap: 24px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+  min-width: 0;
+  width: 100%;
 }
 
-/* Tablet */
-@media (max-width: 1024px) {
+/* Tablet: 400px – 1023px */
+@media (min-width: 400px) and (max-width: 1023px) {
   .grid {
-    grid-template-columns:
-      repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 2fr));
+    gap: 20px;
   }
 }
 
-/* Mobile */
-@media (max-width: 768px) {
+/* Laptop & Desktop: 1024px+ */
+@media (min-width: 1024px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
   }
 }
-.mb2{
+
+/* Laptop: narrow content area → balanced 2×2 grid */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  @container kpi (max-width: 879px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+/* Desktop: 1440px+ */
+@media (min-width: 1440px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+/* Skeleton layout utilities */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  min-width: 0;
+}
+
+.card > .mb2:first-of-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  min-width: 0;
+}
+
+.mb2 {
   margin-bottom: 20px;
 }

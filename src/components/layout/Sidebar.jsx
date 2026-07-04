@@ -7,10 +7,10 @@ import {
   FiChevronsLeft,
   FiChevronsRight,
 } from "react-icons/fi";
-
 import { NavLink } from "react-router-dom";
 import styles from "./Sidebar.module.css";
 import { useSidebar } from "../../context/SidebarContext";
+import logo from "../../assets/logo.png";
 
 const menu = [
   {
@@ -61,7 +61,18 @@ export default function Sidebar({ collapsed, setCollapsed }) {
         `}
       >
         <div className={styles.top}>
-          <div className={styles.logo}>{collapsed ? "S" : "SaaS Admin"}</div>
+          <div className={styles.brand}>
+            <div className={styles.logoWrapper}>
+              <img src={logo} alt="ARASH" className={styles.logoImage} />
+            </div>
+
+            {!collapsed && (
+              <div className={styles.brandInfo}>
+                <h2>ARASH</h2>
+                <span>Admin Dashboard</span>
+              </div>
+            )}
+          </div>
 
           <button className={styles.toggle} onClick={toggleSidebar}>
             {collapsed ? <FiChevronsRight /> : <FiChevronsLeft />}
@@ -69,9 +80,9 @@ export default function Sidebar({ collapsed, setCollapsed }) {
         </div>
 
         <nav className={styles.menu}>
-          {menu.map((item , index) => (
+          {menu.map((item, index) => (
             <NavLink
-            key={index}
+              key={index}
               to={item.path}
               className={({ isActive }) =>
                 `${styles.menuItem} ${isActive ? styles.active : ""}`
@@ -82,9 +93,9 @@ export default function Sidebar({ collapsed, setCollapsed }) {
                 }
               }}
             >
+              <span className={styles.activeBar}></span>
               <span className={styles.icon}>{item.icon}</span>
-
-              {!collapsed && <span>{item.label}</span>}
+              {!collapsed && <span className={styles.label}>{item.label}</span>}
             </NavLink>
           ))}
         </nav>

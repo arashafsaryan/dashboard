@@ -85,3 +85,10 @@
   line-height: 1.6;
   margin-bottom: 5px;
 }
+
+@media (max-width: 767px) {
+  .titleBox {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}

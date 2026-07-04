@@ -34,3 +34,13 @@
 .retryBtn:hover {
   opacity: 0.9;
 }
+
+@media (max-width: 767px) {
+  .empty {
+    padding: 40px 16px;
+  }
+
+  .error {
+    padding: 40px 16px;
+  }
+}

@@ -2,6 +2,11 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  width: 100%;
+  min-width: 0;
+
+  /* Enable Container Queries */
+  container-type: inline-size;
 }
 
 .title {
@@ -9,50 +14,61 @@
   font-weight: 700;
   letter-spacing: -0.6px;
 }
+
 .subtitle {
   font-size: 15px;
   color: var(--muted);
 }
 
 .kpiSection {
+  min-width: 0;
   min-height: 120px;
 }
 
 .analyticsSection {
+  min-width: 0;
   min-height: 350px;
 }
 
+/* ==========================
+   Bottom Grid
+========================== */
+
 .bottomGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
   align-items: stretch;
+  min-width: 0;
 }
 
 .activitySection,
 .teamSection,
 .aiSection {
+  min-width: 0;
   min-height: 300px;
+
+  padding: 20px;
 
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-
-  padding: 20px;
 }
 
 /* ==========================
-   Tablet
+   Container Query
+   (Responsive based on dashboard width)
 ========================== */
 
-@media (max-width: 1350px) {
+@container (max-width: 1180px) {
   .bottomGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .aiSection {
     grid-column: span 2;
   }
+
   .activitySection,
   .teamSection,
   .aiSection {
@@ -60,16 +76,29 @@
   }
 }
 
-/* ==========================
-   Mobile
-========================== */
+@container (max-width: 760px) {
+  .dashboard {
+    gap: 16px;
+  }
 
-@media (max-width: 1000px) {
   .bottomGrid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .aiSection {
     grid-column: auto;
+  }
+
+  .activitySection,
+  .teamSection,
+  .aiSection {
+    min-height: auto;
+    padding: 16px;
+  }
+
+  .kpiSection,
+  .analyticsSection {
+    min-height: auto;
   }
 }

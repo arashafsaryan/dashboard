@@ -2,6 +2,13 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-width: 0;
+}
+
+@media (max-width: 767px) {
+  .list {
+    gap: 10px;
+  }
 }
 .item {
   padding: 12px;

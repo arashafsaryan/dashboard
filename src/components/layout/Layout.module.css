@@ -7,4 +7,24 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  min-width: 0;
+}
+.main {
+  flex: 1;
+  padding: 24px;
+  background: var(--bg);
+  min-width: 0;
+  width: 100%;
+}
+
+@media (max-width: 1023px) {
+  .main {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .main {
+    padding: 16px;
+  }
 }

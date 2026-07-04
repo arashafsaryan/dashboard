@@ -1,6 +1,13 @@
 .analytics {
   padding: 24px;
   flex-wrap: wrap;
+  min-width: 0;
+}
+
+@media (max-width: 767px) {
+  .analytics {
+    padding: 16px;
+  }
 }
 
 /* skeletonHeader loading */

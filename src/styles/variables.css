@@ -32,7 +32,7 @@
 }
 [data-theme="light"] {
   --bg: #f1f5f9;
-  --card: #ffffff;
+  --card: #fefefff5;
   --text: #353535;
   --muted: #64748b;
   --border: rgba(15, 23, 42, 0.08);

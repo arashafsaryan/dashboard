@@ -2,16 +2,20 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  height: 100%;
+  min-width: 0;
   transition:
-    transform 0.25s,
-    border-color 0.25s,
-    box-shadow 0.25s;
+    transform 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .top {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
+  min-width: 0;
 }
 
 .title {
@@ -19,6 +23,10 @@
   letter-spacing: 0.3px;
   font-weight: 500;
   text-transform: uppercase;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* icons style */
@@ -37,17 +45,17 @@
   );
   border: 1px solid rgba(124, 92, 255, 0.18);
   flex-shrink: 0;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 .card:hover .icon {
   transform: scale(1.06);
-  rotate: 6deg;
+  rotate: 360deg;
 }
 .icon svg {
   width: 20px;
   height: 20px;
   font-size: 22px;
-  transition: 0.35s;
+  transition: 0.2s;
 }
 .revenue {
   background: rgba(34, 197, 94, 0.12);
@@ -85,16 +93,33 @@
 /* icons style */
 
 .value {
-  font-size: 40px;
+  font-size: clamp(32px, 8vw, 40px);
   letter-spacing: -1px;
   font-weight: 700;
   line-height: 1;
+  white-space: nowrap;
+  min-width: 0;
+}
+@media (max-width: 500px) {
+  .value {
+    font-size: 25px;
+    font-weight: bolder;
+  }
+}
+
+.chart {
+  width: 100%;
+  min-width: 0;
+  flex-shrink: 0;
 }
 
 .footer {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: nowrap;
+  margin-top: auto;
+  min-width: 0;
 }
 
 .change {
@@ -103,11 +128,17 @@
   gap: 5px;
   font-weight: 700;
   font-size: 14px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .compare {
   color: var(--muted);
   font-size: 13px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .up {
   color: #22c55e;
@@ -115,4 +146,25 @@
 
 .down {
   color: #ef4444;
+}
+
+/* Tablet: 768px – 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .value {
+    font-size: clamp(32px, 4.5vw, 40px);
+  }
+}
+
+/* Laptop: 1024px – 1439px */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .value {
+    font-size: clamp(26px, 2.4vw, 36px);
+  }
+}
+
+/* Desktop: 1440px+ */
+@media (min-width: 1440px) {
+  .value {
+    font-size: 40px;
+  }
 }

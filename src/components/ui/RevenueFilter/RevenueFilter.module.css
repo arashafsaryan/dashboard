@@ -5,8 +5,8 @@
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border);
+  flex-shrink: 0;
 }
-
 .button {
   position: relative;
   width: 50px;
@@ -23,7 +23,6 @@
 
 .button span {
   position: relative;
-  z-index: 2;
 }
 
 .active {
@@ -33,7 +32,22 @@
   background: linear-gradient(135deg, #7c5cff, #5b7cff);
   box-shadow: 0 8px 25px rgba(124, 92, 255, 0.35);
 }
-
 .activeText {
   color: white;
+}
+
+@media (max-width: 650px) {
+  .wrapper {
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  .button {
+    width: 40px;
+    height: 28px;
+    border-radius: 7px;
+    font-weight: 600;
+  }
+  .active {
+    border-radius: 7px;
+  }
 }
