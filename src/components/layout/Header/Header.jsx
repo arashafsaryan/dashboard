@@ -32,8 +32,14 @@ export default function Header() {
           <FiMenu />
         </button>
       </div>
-      <SearchBar />
-      <HeaderActions />
+
+      <div className={styles.center}>
+        <SearchBar />
+      </div>
+
+      <div className={styles.right}>
+        <HeaderActions />
+      </div>
     </header>
   );
 }

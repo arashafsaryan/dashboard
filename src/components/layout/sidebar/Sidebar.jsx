@@ -9,8 +9,8 @@ import {
 } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 import styles from "./Sidebar.module.css";
-import { useSidebar } from "../../context/SidebarContext";
-import logo from "../../assets/logo.png";
+import { useSidebar } from "../../../context/SidebarContext";
+import logo from "../../../assets/logo.png";
 
 const menu = [
   {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "./Sidebar/Sidebar";
 import Header from "./Header/Header";
 import CommandPalette from "../ui/CommandPalette/CommandPalette";
 import styles from "./Layout.module.css";
