@@ -1,46 +1,114 @@
-.empty {
-  padding: 60px;
-  text-align: center;
-  color: var(--muted);
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
 }
-
-/* ---------- Error ---------- */
-
-.error {
-  padding: 60px 20px;
-  text-align: center;
+@media (min-width: 768px) {
+  .toolbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
-
-.error h3 {
-  margin-bottom: 10px;
-  color: var(--danger);
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
 }
-
-.error p {
-  color: var(--muted);
-  margin-bottom: 20px;
+.searchBox {
+  flex: 1;
+  max-width: 520px;
 }
-
-.retryBtn {
+.searchBox input {
+  padding: 10px 0;
+  flex: 1;
   border: none;
-  padding: 10px 18px;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+}
+@media (max-width: 768px) {
+  .searchBox {
+    max-width: 100%;
+  }
+}
+.icon {
+  color: var(--muted);
+  font-size: 16px;
+}
+.bulkActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  background: rgba(124, 92, 255, 0.1);
+  border: 1px solid rgba(124, 92, 255, 0.2);
+  border-radius: 12px;
+  font-weight: 500;
+}
+.bulkButtons {
+  display: flex;
+  gap: 10px;
+}
+.bulkButtons button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: none;
   border-radius: 10px;
-  background: var(--primary);
-  color: white;
+  background: var(--bg);
+  color: var(--text);
   cursor: pointer;
-  transition: 0.25s;
+  transition: 0.2s;
+}
+.bulkButtons button:hover {
+  background: rgba(124, 92, 255, 0.15);
+}
+.orderId {
+  font-weight: 600;
+  color: #7c5cff;
+}
+.amount {
+  font-weight: 700;
+  color: #22c55e;
+}
+.error {
+  padding: 40px;
+  text-align: center;
+  color: #ef4444;
 }
 
-.retryBtn:hover {
-  opacity: 0.9;
+/* skeleton loading */
+
+.skeletonTable {
+  width: 100%;
+  margin-top: 20px;
 }
 
-@media (max-width: 767px) {
-  .empty {
-    padding: 40px 16px;
-  }
+.skeletonHeader {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 0.5fr;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 0 16px;
+}
 
-  .error {
-    padding: 40px 16px;
-  }
+.skeletonRow {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 0.5fr; 
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  background: var(--bg);
+  border-radius: 12px;
+  margin-bottom: 10px;
 }

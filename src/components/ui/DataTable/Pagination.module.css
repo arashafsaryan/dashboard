@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+.info {
+  font-size: 14px;
+  color: var(--muted);
+}
+.button {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: 10px;
+  color: var(--text);
+  cursor: pointer;
+  transition: 0.2s;
+}
+.button:not(:disabled):hover {
+  background: rgba(124, 92, 255, 0.1);
+  color: #7c5cff;
+  border-color: #7c5cff;
+}
+.button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

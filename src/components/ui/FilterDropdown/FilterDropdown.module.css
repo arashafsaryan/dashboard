@@ -1,0 +1,95 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .wrapper {
+    max-width: 250px;
+  }
+}
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 14px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.trigger:hover,
+.trigger:focus {
+  border-color: #7c5cff;
+}
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.icon {
+  color: var(--muted);
+  font-size: 16px;
+}
+.chevron {
+  color: var(--muted);
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+.chevron.open {
+  transform: rotate(180deg);
+  color: #7c5cff;
+}
+.menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  animation: fadeIn 0.2s ease;
+}
+.option {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.option:hover {
+  background: rgba(124, 92, 255, 0.08);
+  color: #7c5cff;
+  padding-left: 16px; /* یک افکت حرکتی ظریف هنگام هاور */
+}
+.active {
+  background: rgba(124, 92, 255, 0.12);
+  color: #7c5cff;
+  font-weight: 600;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -5,8 +5,7 @@ export default function TableAvatar({ name, progress }) {
   return (
     <div className={styles.wrapper}>
       <Avatar name={name} progress={progress} />
-
-      <span>{name}</span>
+      <span className={styles.name}>{name}</span>
     </div>
   );
 }

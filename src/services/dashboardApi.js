@@ -7,7 +7,7 @@ import { teamData } from "../features/dashboard/data/teamData";
 
 export async function getRecentOrders() {
   await new Promise((resolve) => setTimeout(resolve, 800));
-  return ordersData;
+  return ordersData; 
 }
 export async function getRevenueData() {
   await new Promise((resolve) => setTimeout(resolve, 800));
