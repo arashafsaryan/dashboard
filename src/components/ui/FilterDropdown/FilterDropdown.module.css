@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0 14px;
+  padding:14px;
   height: 44px;
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -63,7 +63,8 @@
 .option {
   width: 100%;
   text-align: left;
-  padding: 10px 12px;
+  padding: 10px 8px;
+  margin-bottom: 5px;
   background: transparent;
   border: none;
   border-radius: 8px;
@@ -75,7 +76,7 @@
 .option:hover {
   background: rgba(124, 92, 255, 0.08);
   color: #7c5cff;
-  padding-left: 16px; /* یک افکت حرکتی ظریف هنگام هاور */
+  padding-left: 10px; 
 }
 .active {
   background: rgba(124, 92, 255, 0.12);

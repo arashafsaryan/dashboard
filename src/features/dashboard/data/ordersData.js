@@ -28,13 +28,12 @@ export const ordersData = [
 
   {
     id: "#ORD-1027",
-    customer: "Emma Stone",
+    customer: "Sam Afsar",
     avatar: "E",
     status: "Completed",
     amount: "$760",
     date: "Jun 18, 2026",
   },
-  // ایتم های شخصی سازی شده برای تست
   {
     id: "#ORD-1028",
     customer: "Pouyan Afsarpour",

@@ -2,8 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   gap: 32px;
-  padding: 20px 0;
+
+  padding: 22px 0;
+
   border-bottom: 1px solid var(--border);
 }
 
@@ -13,39 +16,73 @@
 
 .content {
   flex: 1;
+  min-width: 0;
 }
 
 .content h4 {
+  margin: 0 0 6px;
+
   font-size: 15px;
   font-weight: 600;
+
   color: var(--text);
-  margin-bottom: 4px;
 }
 
 .content p {
+  margin: 0;
+
+  max-width: 560px;
+
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.7;
+
   color: var(--muted);
-  max-width: 500px;
 }
 
 .action {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
   flex-shrink: 0;
+
   min-width: 220px;
+}
+
+@media (max-width: 1000px) {
+  .row {
+    gap: 24px;
+  }
+
+  .action {
+    min-width: 180px;
+  }
 }
 
 @media (max-width: 768px) {
   .row {
     flex-direction: column;
+
     align-items: flex-start;
+
+    gap: 16px;
+
+    padding: 18px 0;
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  .content p {
+    max-width: none;
   }
 
   .action {
     width: 100%;
+
     min-width: unset;
+
     justify-content: flex-start;
   }
 }

@@ -1,0 +1,28 @@
+.button {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 46px;
+    padding: 0 16px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
+  }
+
+  .button:hover {
+    border-color: rgba(124, 92, 255, 0.25);
+    background: rgba(124, 92, 255, 0.05);
+  }
+}

@@ -1,4 +1,5 @@
 // import Card from "../../../../components/ui/Card/Card";
+import MobileSectionsButton from "../MobileSectionsButton/MobileSectionsButton";
 import GeneralSection from "./GeneralSection/GeneralSection";
 import AccountSection from "./AccountSection/AccountSection";
 import AppearanceSection from "./AppearanceSection/AppearanceSection";
@@ -11,6 +12,7 @@ import styles from "./SettingsContent.module.css";
 export default function SettingsContent() {
   return (
     <div className={styles.content}>
+      <MobileSectionsButton />
       <section id="general" className={styles.section}>
         <GeneralSection />
       </section>
