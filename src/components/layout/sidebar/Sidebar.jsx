@@ -1,12 +1,12 @@
 import {
   FiHome,
   FiBarChart2,
-  FiFolder,
   FiUsers,
   FiSettings,
   FiChevronsLeft,
   FiChevronsRight,
 } from "react-icons/fi";
+import { IoChatboxOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import styles from "./Sidebar.module.css";
 import { useSidebar } from "../../../context/SidebarContext";
@@ -24,9 +24,9 @@ const menu = [
     path: "/Analytics",
   },
   {
-    label: "Projects",
-    icon: <FiFolder />,
-    path: "/Projects",
+    label: "Chat",
+    icon: <IoChatboxOutline />,
+    path: "/Chat",
   },
   {
     label: "Team",
