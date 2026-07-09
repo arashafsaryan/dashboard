@@ -1,0 +1,71 @@
+.card {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 460px;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.chart {
+  flex: 1;
+
+  margin-top: 12px;
+}
+
+.chart :global(.recharts-surface) {
+  overflow: visible;
+}
+
+/* ---------- Bars ---------- */
+
+.chart :global(.recharts-bar-rectangle path) {
+  fill: var(--primary);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.chart :global(.recharts-bar-rectangle:hover path) {
+  opacity: 0.88;
+}
+
+/* ---------- Labels ---------- */
+
+.chart :global(.recharts-cartesian-axis-tick-value) {
+  fill: var(--text);
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+/* ---------- Grid ---------- */
+
+.chart :global(.recharts-cartesian-grid line) {
+  stroke: rgba(255, 255, 255, 0.05);
+}
+
+/* ---------- Tooltip Cursor ---------- */
+
+.chart :global(.recharts-tooltip-cursor) {
+  fill: rgba(124, 92, 255, 0.05);
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 768px) {
+  .card {
+    min-height: 420px;
+  }
+}

@@ -3,18 +3,19 @@ import Layout from "./components/layout/Layout";
 import DashboardPage from "./features/dashboard/DashboardPage";
 import SettingsPage from "./features/settings/SettingsPage";
 import { Toaster } from "sonner";
+import Analytics from "./features/Analytics/Analytics";
+import Team from "./features/Team/Team";
 
-function Analytics() {
-  return <h1>Analytics</h1>;
-}
+
 
 export default function App() {
   return (
     <Layout>
       <Routes>
         <Route path="/" element={<DashboardPage />} />
-        <Route path="/analytics" element={<Analytics />} />
         <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/analytics" element={<Analytics />} />
+        <Route path="/team" element={<Team />} />
       </Routes>
       <Toaster
         position="top-center"

@@ -5,6 +5,8 @@
   --text: #cecece;
   --muted: #94a3b8;
   --border: rgba(255, 255, 255, 0.08);
+  --surface: #171d2d;
+  --surface-hover: #21283c;
   --primary: #6366f1;
   --primary-hover: #4f46e5;
   --success: #22c55e;
@@ -33,6 +35,8 @@
 [data-theme="light"] {
   --bg: #f1f5f9;
   --card: #ffffff;
+  --surface: #ffffff;
+  --surface-hover: #f6f7fb;
   --text: #353535;
   --muted: #64748b;
   --border: rgba(15, 23, 42, 0.08);

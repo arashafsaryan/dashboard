@@ -4,9 +4,12 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   font-family: Inter, system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
+  max-width: 2000px;
+  margin: auto;
 }

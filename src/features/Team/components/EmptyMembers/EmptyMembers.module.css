@@ -1,0 +1,49 @@
+.empty {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 14px;
+
+  padding: 90px 24px;
+
+  text-align: center;
+}
+
+.icon {
+  width: 72px;
+
+  height: 72px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(124, 92, 255, 0.08);
+
+  color: var(--primary);
+}
+
+.empty h3 {
+  font-size: 22px;
+
+  font-weight: 700;
+
+  color: var(--text);
+}
+
+.empty p {
+  max-width: 320px;
+
+  color: var(--muted);
+
+  line-height: 1.6;
+}

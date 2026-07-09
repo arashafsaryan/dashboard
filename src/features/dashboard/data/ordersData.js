@@ -1,8 +1,8 @@
 export const ordersData = [
   {
     id: "#ORD-1024",
-    customer: "John Doe",
-    avatar: "J",
+    customer: "Arya Afsaryan",
+    avatar: "https://i.pravatar.cc/150?img=11",
     status: "Completed",
     amount: "$420",
     date: "Jun 21, 2026",
@@ -10,8 +10,8 @@ export const ordersData = [
 
   {
     id: "#ORD-1025",
-    customer: "Sarah Kim",
-    avatar: "S",
+    customer: "Masoud Afsar",
+    avatar: "https://i.pravatar.cc/150?img=12",
     status: "Pending",
     amount: "$180",
     date: "Jun 20, 2026",
@@ -19,8 +19,8 @@ export const ordersData = [
 
   {
     id: "#ORD-1026",
-    customer: "Mike Ross",
-    avatar: "M",
+    customer: "Amin Afrandid",
+    avatar: "https://i.pravatar.cc/150?img=13",
     status: "Failed",
     amount: "$95",
     date: "Jun 19, 2026",
@@ -29,7 +29,7 @@ export const ordersData = [
   {
     id: "#ORD-1027",
     customer: "Sam Afsar",
-    avatar: "E",
+    avatar: "https://i.pravatar.cc/150?img=14",
     status: "Completed",
     amount: "$760",
     date: "Jun 18, 2026",
@@ -37,7 +37,7 @@ export const ordersData = [
   {
     id: "#ORD-1028",
     customer: "Pouyan Afsarpour",
-    avatar: "P",
+    avatar: "https://i.pravatar.cc/150?img=57",
     status: "Completed",
     amount: "$360",
     date: "Jun 22, 2026",
@@ -45,7 +45,7 @@ export const ordersData = [
   {
     id: "#ORD-1029",
     customer: "Arash Afsaryan",
-    avatar: "A",
+    avatar: "https://i.pravatar.cc/150?img=52",
     status: "Failed",
     amount: "$560",
     date: "Jun 22, 2026",
@@ -53,7 +53,7 @@ export const ordersData = [
   {
     id: "#ORD-1030",
     customer: "Javad Afsar",
-    avatar: "J",
+    avatar: "https://i.pravatar.cc/150?img=53",
     status: "Completed",
     amount: "$160",
     date: "Jun 23, 2026",
@@ -61,7 +61,7 @@ export const ordersData = [
   {
     id: "#ORD-1031",
     customer: "Shahram Afsari",
-    avatar: "S",
+    avatar: "https://i.pravatar.cc/150?img=54",
     status: "Failed",
     amount: "$365",
     date: "Jun 23, 2026",
@@ -70,7 +70,7 @@ export const ordersData = [
   {
     id: "#ORD-1032",
     customer: "Mehrdad Afsari",
-    avatar: "M",
+    avatar: "https://i.pravatar.cc/150?img=55",
     status: "Pending",
     amount: "$560",
     date: "Jun 24, 2026",
@@ -78,7 +78,7 @@ export const ordersData = [
   {
     id: "#ORD-1033",
     customer: "Ahmadreza Afrand",
-    avatar: "A",
+    avatar: "https://i.pravatar.cc/150?img=56",
     status: "Pending",
     amount: "$950",
     date: "Jun 24, 2026",

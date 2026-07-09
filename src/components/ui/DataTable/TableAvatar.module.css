@@ -3,7 +3,16 @@
   align-items: center;
   gap: 12px;
 }
+
 .name {
   font-weight: 500;
   color: var(--text);
+}
+
+.image {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid transparent;
 }

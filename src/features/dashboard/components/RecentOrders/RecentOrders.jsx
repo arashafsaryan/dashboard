@@ -109,7 +109,7 @@ export default function RecentOrders() {
       key: "customer",
       title: "Customer",
       align: "left",
-      render: (row) => <TableAvatar name={row.customer} />,
+      render: (row) => <TableAvatar name={row.customer} avatar={row.avatar} />,
     },
     {
       key: "status",

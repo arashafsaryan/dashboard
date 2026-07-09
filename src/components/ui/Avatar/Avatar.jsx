@@ -1,6 +1,11 @@
 import styles from "./Avatar.module.css";
 
-export default function Avatar({ name, size = "sm", progress }) {
+export default function Avatar({
+  name,
+  image,
+  size = "sm",
+  progress,
+}) {
   const initials = name
     ?.split(" ")
     .slice(0, 2)
@@ -12,10 +17,10 @@ export default function Avatar({ name, size = "sm", progress }) {
     progress >= 90
       ? styles.excellent
       : progress >= 75
-        ? styles.good
-        : progress >= 60
-          ? styles.average
-          : styles.low;
+      ? styles.good
+      : progress >= 60
+      ? styles.average
+      : styles.low;
 
   return (
     <div
@@ -25,7 +30,26 @@ export default function Avatar({ name, size = "sm", progress }) {
         ${colorClass}
       `}
     >
-      <span>{initials}</span>
+      {image ? (
+        <img
+          src={image}
+          alt={name}
+          className={styles.image}
+          onError={(e) => {
+            e.currentTarget.style.display = "none";
+            e.currentTarget.nextSibling.style.display = "flex";
+          }}
+        />
+      ) : null}
+
+      <span
+        className={styles.initials}
+        style={{
+          display: image ? "none" : "flex",
+        }}
+      >
+        {initials}
+      </span>
 
       <span className={styles.status}></span>
     </div>

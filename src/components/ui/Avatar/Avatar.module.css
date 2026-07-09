@@ -1,22 +1,14 @@
 .avatar {
   position: relative;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border-radius: 50%;
-
   color: white;
-
   font-weight: 700;
-
   overflow: hidden;
-
   flex-shrink: 0;
-
   border: 2px solid rgba(255, 255, 255, 0.08);
-
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
@@ -32,26 +24,32 @@
 .avatar span:first-child {
   position: relative;
   z-index: 2;
-
   letter-spacing: 0.5px;
 }
-
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
 .status {
   position: absolute;
-
   right: 2px;
   bottom: 2px;
-
   width: 10px;
   height: 10px;
-
   border-radius: 50%;
-
   background: #22c55e;
-
   border: 2px solid var(--card);
 }
-
+.initials {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
 /* ---------- Sizes ---------- */
 
 .sm {
@@ -76,24 +74,20 @@
 
 .excellent {
   background: linear-gradient(135deg, #22c55e, #16a34a);
-
   box-shadow: 0 10px 24px rgba(34, 197, 94, 0.35);
 }
 
 .good {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
-
   box-shadow: 0 10px 24px rgba(59, 130, 246, 0.35);
 }
 
 .average {
   background: linear-gradient(135deg, #f59e0b, #d97706);
-
   box-shadow: 0 10px 24px rgba(245, 158, 11, 0.35);
 }
 
 .low {
   background: linear-gradient(135deg, #ef4444, #dc2626);
-
   box-shadow: 0 10px 24px rgba(239, 68, 68, 0.35);
 }

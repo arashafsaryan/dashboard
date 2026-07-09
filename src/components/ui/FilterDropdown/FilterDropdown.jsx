@@ -6,7 +6,6 @@ export default function FilterDropdown({ value, onChange, options }) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
 
-  // بستن منو هنگام کلیک در بیرون آن
   useEffect(() => {
     function handleClick(e) {
       if (ref.current && !ref.current.contains(e.target)) {

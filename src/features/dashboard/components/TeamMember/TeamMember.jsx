@@ -3,7 +3,7 @@ import Avatar from "../../../../components/ui/Avatar/Avatar";
 import AnimatedProgress from "../../../../components/ui/AnimatedProgress";
 import AnimatedCounter from "../../../../components/ui/AnimatedCounter";
 
-export default function TeamMember({ name, role, progress }) {
+export default function TeamMember({ name, role, progress, avatar }) {
   let gradient;
   if (progress >= 90) {
     gradient = "linear-gradient(90deg,#22c55e,#16a34a)";
@@ -18,8 +18,7 @@ export default function TeamMember({ name, role, progress }) {
     <div className={styles.member}>
       <div className={styles.top}>
         <div className={styles.info}>
-          <Avatar name={name} size="sm" progress={progress} />
-
+          <Avatar name={name} size="sm" progress={progress} image={avatar} />
           <div>
             <h4>{name}</h4>
             <span>{role}</span>

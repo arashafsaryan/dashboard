@@ -1,12 +1,14 @@
 import SettingsCard from "../../../../../../components/ui/SettingsCard/SettingsCard";
 import SettingRow from "../../../../../../components/ui/SettingRow/SettingRow";
-import Select from "../../../../../../components/ui/Select/Select";
+import FilterDropdown from "../../../../../../components/ui/FilterDropdown/FilterDropdown";
+
 import { useSettings } from "../../../../context/SettingsContext";
 
 export default function WorkspaceCard() {
   const { settings, updateField } = useSettings();
 
   const workspace = settings.workspace;
+
   return (
     <SettingsCard
       title="Workspace"
@@ -16,31 +18,24 @@ export default function WorkspaceCard() {
         title="Default Landing Page"
         description="Choose the page to open after signing in."
       >
-        <Select
+        <FilterDropdown
           value={workspace.landingPage}
-          options={[
-            { value: "dashboard", label: "Dashboard" },
-            { value: "analytics", label: "Analytics" },
-            { value: "projects", label: "Projects" },
-          ]}
-          onChange={(e) =>
-            updateField("workspace", "landingPage", e.target.value)
+          options={["Dashboard", "Analytics", "Projects"]}
+          onChange={(value) =>
+            updateField("workspace", "landingPage", value.toLowerCase())
           }
         />
       </SettingRow>
+
       <SettingRow
         title="Dashboard View"
         description="Choose your preferred dashboard layout."
       >
-        <Select
+        <FilterDropdown
           value={workspace.dashboardView}
-          options={[
-            { value: "overview", label: "Overview" },
-            { value: "compact", label: "Compact" },
-            { value: "detailed", label: "Detailed" },
-          ]}
-          onChange={(e) =>
-            updateField("workspace", "dashboardView", e.target.value)
+          options={["Overview", "Compact", "Detailed"]}
+          onChange={(value) =>
+            updateField("workspace", "dashboardView", value.toLowerCase())
           }
         />
       </SettingRow>

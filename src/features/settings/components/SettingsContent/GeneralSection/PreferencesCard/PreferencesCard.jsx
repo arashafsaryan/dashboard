@@ -1,6 +1,7 @@
 import SettingRow from "../../../../../../components/ui/SettingRow/SettingRow";
-import Select from "../../../../../../components/ui/Select/Select";
+import FilterDropdown from "../../../../../../components/ui/FilterDropdown/FilterDropdown";
 import SettingsCard from "../../../../../../components/ui/SettingsCard/SettingsCard";
+
 import { useSettings } from "../../../../context/SettingsContext";
 
 export default function PreferencesCard() {
@@ -17,77 +18,88 @@ export default function PreferencesCard() {
         title="Language"
         description="Choose your preferred language."
       >
-        <Select
+        <FilterDropdown
           value={preferences.language}
-          options={[
-            { value: "en", label: "English" },
-            { value: "fa", label: "Persian" },
-          ]}
-          onChange={(e) =>
-            updateField("preferences", "language", e.target.value)
+          options={["English", "Persian"]}
+          onChange={(value) =>
+            updateField(
+              "preferences",
+              "language",
+              value.toLowerCase() === "english" ? "en" : "fa"
+            )
           }
         />
       </SettingRow>
+
       <SettingRow
         title="Timezone"
         description="Used for scheduling and timestamps."
       >
-        <Select
+        <FilterDropdown
           value={preferences.timezone}
           options={[
-            { value: "tehran", label: "Asia / Tehran" },
-            { value: "utc", label: "UTC" },
-            { value: "london", label: "Europe / London" },
-            { value: "newyork", label: "America / New York" },
+            "Asia / Tehran",
+            "UTC",
+            "Europe / London",
+            "America / New York",
           ]}
-          onChange={(e) =>
-            updateField("preferences", "timezone", e.target.value)
-          }
+          onChange={(value) => {
+            const map = {
+              "Asia / Tehran": "tehran",
+              UTC: "utc",
+              "Europe / London": "london",
+              "America / New York": "newyork",
+            };
+
+            updateField(
+              "preferences",
+              "timezone",
+              map[value]
+            );
+          }}
         />
       </SettingRow>
+
       <SettingRow
         title="Date Format"
         description="Preferred format for displaying dates."
       >
-        <Select
+        <FilterDropdown
           value={preferences.dateFormat}
           options={[
-            {
-              value: "dd-mm-yyyy",
-              label: "DD/MM/YYYY",
-            },
-            {
-              value: "mm-dd-yyyy",
-              label: "MM/DD/YYYY",
-            },
-            {
-              value: "yyyy-mm-dd",
-              label: "YYYY/MM/DD",
-            },
+            "DD/MM/YYYY",
+            "MM/DD/YYYY",
+            "YYYY/MM/DD",
           ]}
-          onChange={(e) =>
-            updateField("preferences", "dateFormat", e.target.value)
-          }
+          onChange={(value) => {
+            const map = {
+              "DD/MM/YYYY": "dd-mm-yyyy",
+              "MM/DD/YYYY": "mm-dd-yyyy",
+              "YYYY/MM/DD": "yyyy-mm-dd",
+            };
+
+            updateField(
+              "preferences",
+              "dateFormat",
+              map[value]
+            );
+          }}
         />
       </SettingRow>
+
       <SettingRow
         title="Week Starts On"
         description="Choose the first day of your week."
       >
-        <Select
+        <FilterDropdown
           value={preferences.weekStart}
-          options={[
-            {
-              value: "monday",
-              label: "Monday",
-            },
-            {
-              value: "sunday",
-              label: "Sunday",
-            },
-          ]}
-          onChange={(e) =>
-            updateField("preferences", "weekStart", e.target.value)
+          options={["Monday", "Sunday"]}
+          onChange={(value) =>
+            updateField(
+              "preferences",
+              "weekStart",
+              value.toLowerCase()
+            )
           }
         />
       </SettingRow>

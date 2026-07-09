@@ -1,6 +1,6 @@
 import SettingsCard from "../../../../../components/ui/SettingsCard/SettingsCard";
 import SettingRow from "../../../../../components/ui/SettingRow/SettingRow";
-import Select from "../../../../../components/ui/Select/Select";
+import FilterDropdown from "../../../../../components/ui/FilterDropdown/FilterDropdown";
 import Switch from "../../../../../components/ui/Switch/Switch";
 
 import { useSettings } from "../../../context/SettingsContext";
@@ -19,71 +19,36 @@ export default function AppearanceCard() {
         title="Theme"
         description="Choose your preferred application theme."
       >
-        <Select
+        <FilterDropdown
           value={appearance.theme}
-          onChange={(e) => updateField("appearance", "theme", e.target.value)}
-          options={[
-            {
-              value: "light",
-              label: "Light",
-            },
-            {
-              value: "dark",
-              label: "Dark",
-            },
-            {
-              value: "system",
-              label: "System",
-            },
-          ]}
+          onChange={(value) =>
+            updateField("appearance", "theme", value.toLowerCase())
+          }
+          options={["Light", "Dark", "System"]}
         />
       </SettingRow>
       <SettingRow
         title="Interface Density"
         description="Adjust spacing throughout the application."
       >
-        <Select
+        <FilterDropdown
           value={appearance.density}
-          onChange={(e) => updateField("appearance", "density", e.target.value)}
-          options={[
-            {
-              value: "comfortable",
-              label: "Comfortable",
-            },
-            {
-              value: "default",
-              label: "Default",
-            },
-            {
-              value: "compact",
-              label: "Compact",
-            },
-          ]}
+          onChange={(value) =>
+            updateField("appearance", "density", value.toLowerCase())
+          }
+          options={["Comfortable", "Default", "Compact"]}
         />
       </SettingRow>
       <SettingRow
         title="Sidebar Mode"
         description="Choose the default sidebar behavior."
       >
-        <Select
+        <FilterDropdown
           value={appearance.sidebarMode}
-          onChange={(e) =>
-            updateField("appearance", "sidebarMode", e.target.value)
+          onChange={(value) =>
+            updateField("appearance", "sidebarMode", value.toLowerCase())
           }
-          options={[
-            {
-              value: "expanded",
-              label: "Expanded",
-            },
-            {
-              value: "collapsed",
-              label: "Collapsed",
-            },
-            {
-              value: "auto",
-              label: "Auto",
-            },
-          ]}
+          options={["Expanded", "Collapsed", "Auto"]}
         />
       </SettingRow>
       <SettingRow
