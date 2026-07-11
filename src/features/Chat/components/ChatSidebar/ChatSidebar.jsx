@@ -9,6 +9,7 @@ export default memo(function ChatSidebar({
   onSelectConversation,
 }) {
   const listRef = useRef(null);
+
   useEffect(() => {
     if (!selectedConversation) return;
 
@@ -24,10 +25,8 @@ export default memo(function ChatSidebar({
     <aside className={styles.sidebar}>
       <div className={styles.header}>
         <h2>Messages</h2>
-
         <div className={styles.search}>
           <Search size={18} />
-
           <input placeholder="Search conversations..." type="text" />
         </div>
       </div>
@@ -53,20 +52,17 @@ export default memo(function ChatSidebar({
                   alt={conversation.name}
                   className={styles.avatar}
                 />
-
                 {conversation.online && <span className={styles.online} />}
               </div>
 
               <div className={styles.info}>
                 <div className={styles.top}>
                   <h4>{conversation.name}</h4>
-
                   <span>{conversation.lastTime}</span>
                 </div>
 
                 <div className={styles.bottom}>
                   <p>{conversation.lastMessage}</p>
-
                   {!!conversation.unread && (
                     <span className={styles.badge}>{conversation.unread}</span>
                   )}

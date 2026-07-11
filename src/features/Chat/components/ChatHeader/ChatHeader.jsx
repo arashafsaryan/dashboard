@@ -1,6 +1,6 @@
 import styles from "./ChatHeader.module.css";
 import { Phone, Video, Search } from "lucide-react";
-import FilterDropdown from "../../../../components/ui/FilterDropdown/FilterDropdown";
+// import FilterDropdown from "../../../../components/ui/FilterDropdown/FilterDropdown";
 
 export default function ChatHeader({ conversation }) {
   if (!conversation) return null;
@@ -26,22 +26,19 @@ export default function ChatHeader({ conversation }) {
       </div>
 
       <div className={styles.actions}>
+        {/* <FilterDropdown
+          iconOnly
+          options={["View Profile", "Mute", "Block", "Delete Chat"]}
+        /> */}
         <button>
           <Search size={18} />
         </button>
-
         <button>
           <Phone size={18} />
         </button>
-
         <button>
           <Video size={18} />
         </button>
-
-        <FilterDropdown
-          iconOnly
-          options={["View Profile", "Mute", "Block", "Delete Chat"]}
-        />
       </div>
     </header>
   );

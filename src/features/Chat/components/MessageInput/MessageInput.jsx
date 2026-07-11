@@ -42,38 +42,32 @@ export default function MessageInput({
   const resizeTextarea = () => {
     if (!textareaRef.current) return;
 
-    textareaRef.current.style.height = "auto";
-
+    // تنظیم ارتفاع روی 0 قبل از محاسبه مجدد برای کوچک شدن صحیح هنگام پاک کردن متن
+    textareaRef.current.style.height = "0px";
     textareaRef.current.style.height =
       Math.min(textareaRef.current.scrollHeight, 140) + "px";
   };
 
   const resetTextarea = () => {
     if (!textareaRef.current) return;
-
     textareaRef.current.style.height = "28px";
   };
 
   const sendMessage = () => {
     if (!message.trim()) return;
-
     onSendMessage(message.trim());
-
     setMessage("");
-
     resetTextarea();
   };
 
   const handleChange = (e) => {
     setMessage(e.target.value);
-
     resizeTextarea();
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-
       sendMessage();
     }
   };
@@ -95,7 +89,6 @@ export default function MessageInput({
             }}
             onSend={() => {
               console.log("Voice Sent");
-
               setIsRecording(false);
               setSeconds(0);
             }}
@@ -106,21 +99,20 @@ export default function MessageInput({
               <div className={styles.replySection}>
                 <div className={styles.replyBox}>
                   <div className={styles.replyInfo}>
-                    <Reply size={15} />
-
-                    <div>
+                    <div className={styles.replyIconWrapper}>
+                      <Reply size={16} />
+                    </div>
+                    <div className={styles.replyContent}>
                       <strong>
                         {replyMessage.senderId === "me"
                           ? "You"
                           : replyMessage.sender}
                       </strong>
-
                       <p>{replyMessage.text}</p>
                     </div>
                   </div>
-
                   <button className={styles.replyClose} onClick={onCancelReply}>
-                    <X size={16} />
+                    <X size={18} />
                   </button>
                 </div>
               </div>

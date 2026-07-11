@@ -1,9 +1,9 @@
 .header {
-  height: 78px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 28px;
+  padding: 0 20px;
   border-bottom: 1px solid var(--border);
   background: var(--surface);
 }
@@ -11,7 +11,7 @@
 .left {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 15px;
 }
 
 .avatarWrapper {
@@ -37,7 +37,7 @@
 }
 
 .left h3 {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text);
 }
@@ -46,13 +46,13 @@
   display: block;
   margin-top: 3px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 11px;
 }
 
 .actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }
 
 .actions button {

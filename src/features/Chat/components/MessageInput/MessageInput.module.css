@@ -2,14 +2,16 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 20px 24px;
-  border-top: 1px solid var(--border);
+  padding: 12px 20px;
   background: var(--surface);
   flex-shrink: 0;
   z-index: 5;
   position: relative;
+  /* border-top: 1px solid var(--border); */
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.02);
 }
 
+/* ------------------- Buttons ------------------- */
 .iconButton {
   width: 44px;
   height: 44px;
@@ -22,96 +24,20 @@
   color: var(--muted);
   cursor: pointer;
   flex-shrink: 0;
-  transition: 0.2s;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .iconButton:hover {
   background: var(--surface-hover);
   color: var(--text);
+  transform: translateY(-1px);
 }
 
-.inputWrapper {
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
-  gap: 12px;
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: var(--background);
-  transition: 0.2s;
+.iconButton:active {
+  transform: translateY(1px);
 }
 
-.inputWrapper:focus-within {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.12);
-}
-
-.inputWrapper textarea {
-  flex: 1;
-  resize: none;
-  border: none;
-  outline: none;
-  background: transparent;
-  color: var(--text);
-  font: inherit;
-  line-height: 1.6;
-  min-height: 28px;
-  max-height: 140px;
-  overflow-y: auto;
-}
-
-.inputWrapper textarea::placeholder {
-  color: var(--muted);
-}
-
-.send {
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 14px;
-  background: var(--primary);
-  color: white;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: 0.2s;
-}
-
-.send:hover:not(:disabled) {
-  transform: scale(1.05);
-}
-
-.send:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  transform: none;
-}
-
-@media (max-width: 640px) {
-  .wrapper {
-    padding: 16px;
-    gap: 8px;
-  }
-
-  .iconButton {
-    width: 40px;
-    height: 40px;
-  }
-
-  .send {
-    width: 40px;
-    height: 40px;
-  }
-}
-
-/* reply message style */
-.replySection {
-  animation: replyFade 0.18s ease;
-}
-
+/* ------------------- Input Area ------------------- */
 .inputRow {
   display: flex;
   align-items: flex-end;
@@ -123,13 +49,19 @@
   display: flex;
   align-items: flex-end;
   gap: 12px;
-  padding: 10px 12px;
+  padding: 8px 10px 8px 16px;
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 24px; 
   background: var(--background);
   min-height: 56px;
-  transition: 0.2s;
+  transition: all 0.3s ease;
 }
+
+.inputWrapper:focus-within {
+  border-color: var(--primary);
+  background: var(--surface);
+}
+
 .inputWrapper textarea {
   flex: 1;
   resize: none;
@@ -138,11 +70,77 @@
   background: transparent;
   color: var(--text);
   font: inherit;
+  font-size: 14px;
   line-height: 1.6;
-  height: 28px;
   min-height: 28px;
   max-height: 140px;
   overflow-y: auto;
+}
+
+.inputWrapper textarea::placeholder {
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.inputWrapper:focus-within textarea::placeholder {
+  color: rgba(124, 92, 255, 0.5); 
+}
+
+/* Custom Scrollbar for Textarea */
+.inputWrapper textarea::-webkit-scrollbar {
+  width: 6px;
+}
+
+.inputWrapper textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.inputWrapper textarea::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 10px;
+}
+
+.inputWrapper textarea::-webkit-scrollbar-thumb:hover {
+  background-color: var(--muted);
+}
+
+/* ------------------- Send Button ------------------- */
+.send {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%; 
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 12px rgba(124, 92, 255, 0.25);
+}
+
+.send:hover:not(:disabled) {
+  transform: scale(1.01) translateY(-2px);
+  box-shadow: 0 6px 16px rgba(124, 92, 255, 0.35);
+}
+
+.send:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.send:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ------------------- Reply Section ------------------- */
+.replySection {
+  animation: replyFade 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  margin-bottom: 4px;
 }
 
 .replyBox {
@@ -150,52 +148,108 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 10px 14px;
-  border-left: 3px solid var(--primary);
-  border-radius: 12px;
-  background: var(--surface);
+  padding: 12px 16px;
+  border-left: 4px solid var(--primary);
+  border-radius: 12px 16px 16px 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(124, 92, 255, 0.05) 0%,
+    var(--background) 100%
+  );
+  position: relative;
 }
 
 .replyInfo {
   display: flex;
-  gap: 10px;
-  align-items: flex-start;
+  gap: 12px;
+  align-items: center;
+  overflow: hidden;
 }
 
-.replyInfo strong {
+.replyIconWrapper {
+  color: var(--primary);
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(124, 92, 255, 0.1);
+  padding: 6px;
+  border-radius: 50%;
+}
+
+.replyContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.replyContent strong {
   font-size: 13px;
   color: var(--primary);
+  font-weight: 600;
+  letter-spacing: 0.2px;
 }
 
-.replyInfo p {
-  margin-top: 2px;
+.replyContent p {
+  margin-top: 3px;
   font-size: 13px;
   color: var(--muted);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 260px;
+  max-width: 300px;
 }
 
 .replyClose {
   border: none;
-  background: transparent;
+  background: var(--surface);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   color: var(--muted);
-  transition: 0.18s;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .replyClose:hover {
   color: var(--danger);
+  background: rgba(255, 77, 79, 0.1); 
+  transform: rotate(90deg);
 }
+
+/* ------------------- Animations ------------------- */
 @keyframes replyFade {
   from {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(10px) scale(0.98);
   }
-
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ------------------- Responsive ------------------- */
+@media (max-width: 640px) {
+  .wrapper {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .iconButton {
+    width: 38px;
+    height: 38px;
+  }
+
+  .send {
+    width: 38px;
+    height: 38px;
+  }
+
+  .replyContent p {
+    max-width: 200px;
   }
 }

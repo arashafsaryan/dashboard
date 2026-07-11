@@ -76,4 +76,37 @@ export const messages = {
       status: "delivered",
     },
   ],
+  6: [
+    {
+      id: 1,
+      sender: "Shahram Afsari",
+      senderId: 6,
+      type: "text",
+      text: "salam admin?",
+      time: "07:35",
+      status: "delivered",
+    },
+  ],
+  7: [
+    {
+      id: 1,
+      sender: "Arash Afsaryan",
+      senderId: 7,
+      type: "text",
+      text: "hello how are you today admin?",
+      time: "09:55",
+      status: "delivered",
+    },
+  ],
+  8: [
+    {
+      id: 1,
+      sender: "Mehrdad Afsari",
+      senderId: 8,
+      type: "text",
+      text: "can you help me?",
+      time: "07:05",
+      status: "delivered",
+    },
+  ],
 };
