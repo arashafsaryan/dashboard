@@ -1,0 +1,111 @@
+.window {
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 28px;
+  background: var(--background);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  scroll-behavior: smooth;
+}
+
+.spacer {
+  flex: 1;
+  min-height: 24px;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+/* Custom Scrollbar */
+
+.window::-webkit-scrollbar {
+  width: 8px;
+}
+
+.window::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.window::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+
+.window::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Skeleton */
+
+.skeleton {
+  height: 56px;
+  border-radius: 18px;
+
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-start) 25%,
+    var(--skeleton-middle) 50%,
+    var(--skeleton-start) 75%
+  );
+
+  background-size: 200% 100%;
+
+  animation: shimmer 1.4s linear infinite;
+}
+
+.left {
+  width: 260px;
+}
+
+.right {
+  width: 190px;
+  margin-left: auto;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 1024px) {
+  .window {
+    padding: 22px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 640px) {
+  .window {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .left {
+    width: 70%;
+  }
+
+  .right {
+    width: 60%;
+  }
+}
+.window::after {
+  content: "";
+
+  display: block;
+
+  height: 12px;
+
+  flex-shrink: 0;
+}

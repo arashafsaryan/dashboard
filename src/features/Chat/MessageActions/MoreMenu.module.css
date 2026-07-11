@@ -1,0 +1,81 @@
+.menu {
+  position: absolute;
+
+  top: 42px;
+
+  right: 0;
+
+  min-width: 180px;
+
+  padding: 6px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  background: var(--surface);
+
+  box-shadow: var(--shadow-lg);
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+
+  animation: menuIn 0.18s ease;
+
+  z-index: 50;
+}
+
+.menu button {
+  width: 100%;
+
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 0 12px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: transparent;
+
+  color: var(--text);
+
+  cursor: pointer;
+
+  transition: 0.18s;
+}
+
+.menu button:hover {
+  background: var(--surface-hover);
+}
+
+.danger {
+  color: var(--danger);
+}
+
+.danger:hover {
+  background: rgba(239, 68, 68, 0.08);
+}
+
+@keyframes menuIn {
+  from {
+    opacity: 0;
+
+    transform: translateY(-6px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: none;
+  }
+}

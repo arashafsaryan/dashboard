@@ -1,0 +1,29 @@
+.wrapper {
+  position: relative;
+}
+
+.button {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.button:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.popup {
+  position: absolute;
+  bottom: 56px;
+  left: 0;
+  z-index: 100;
+}
