@@ -21,7 +21,7 @@
 }
 
 .collapsed {
-  width: 88px;
+  width: 85px;
   padding: var(--space-5) var(--space-2);
 }
 
@@ -49,25 +49,6 @@
   align-items: center;
   gap: var(--space-3);
   overflow: hidden;
-}
-
-.logoWrapper {
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-md);
-  background: var(--surface-hover);
-  border: 1px solid var(--border);
-  transition: transform 0.2s ease;
-}
-
-.logoImage {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
 }
 
 .brandInfo {
@@ -282,9 +263,35 @@
   white-space: nowrap;
   transition: opacity 0.2s;
 }
+/* ==========================
+   Fix Collapsed Centering
+========================== */
+
+/* ۱. حذف فاصله (gap) و سنتر کردن محتوای آیتم */
+.collapsed .itemContent {
+  gap: 0;
+  width: 100%;
+  justify-content: center;
+}
+
+.collapsed .menuItem {
+  padding: 0;
+  justify-content: center;
+}
+
+.collapsed .brand {
+  gap: 0;
+  justify-content: center;
+}
+
+.collapsed .userProfile {
+  gap: 0;
+  padding: var(--space-2) 0; 
+  justify-content: center;
+}
 
 .collapsed .userInfo {
-  display: none; /* مخفی کردن کامل در حالت بسته */
+  display: none; 
 }
 
 .userName {

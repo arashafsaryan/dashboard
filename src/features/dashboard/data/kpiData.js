@@ -36,7 +36,7 @@ export const kpiData = [
   {
     title: "Projects",
     value: "428",
-    change: "+3.8%",
+    change: "-3.8%",
     Icon: AiOutlineFundProjectionScreen,
     trend: [
       { value: 6 },

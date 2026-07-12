@@ -4,6 +4,7 @@
   --card: #111827;
   --text: #cecece;
   --title: #ffffffee;
+  --iconBg: #8787871b;
   --muted: #94a3b8;
   --border: rgba(255, 255, 255, 0.08);
   --surface: #171d2d;
@@ -37,9 +38,10 @@
   --space-8: 64px;
 }
 [data-theme="light"] {
-  --bg: #f1f5f9;
+  --bg: #fbfbfb;
   --card: #ffffff;
   --surface: #ffffff;
+  --iconBg: #f2f2f261;
   --surface-hover: #f6f7fb;
   --skeleton-start: #e8edf5;
   --skeleton-middle: #d9e1ec;

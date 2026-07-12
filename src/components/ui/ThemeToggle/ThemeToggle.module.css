@@ -4,8 +4,8 @@
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--iconBg);
+  /* border: 1px solid var(--border); */
   display: flex;
   align-items: center;
   justify-content: center;

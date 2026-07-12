@@ -11,7 +11,6 @@ import { IoChatboxOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import styles from "./Sidebar.module.css";
 import { useSidebar } from "../../../context/SidebarContext";
-import logo from "../../../assets/logo.png";
 
 const menu = [
   { label: "Dashboard", icon: <FiHome />, path: "/" },
@@ -44,10 +43,6 @@ export default function Sidebar({ collapsed, setCollapsed }) {
         {/* هدر سایدبار */}
         <div className={styles.top}>
           <div className={styles.brand}>
-            <div className={styles.logoWrapper}>
-              <img src={logo} alt="ARASH" className={styles.logoImage} />
-            </div>
-
             <div className={styles.brandInfo}>
               <h2>ARASH</h2>
               <span>Workspace</span>

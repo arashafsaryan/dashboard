@@ -1,170 +1,202 @@
+/* ==========================
+   Card Base & Hover Effects
+========================== */
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   height: 100%;
   min-width: 0;
-  transition:
-    transform 0.2s,
-    border-color 0.2s,
-    box-shadow 0.2s;
+  padding: var(--space-5);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+.card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--primary) 30%, transparent);
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.15),
+    0 0 0 1px color-mix(in srgb, var(--primary) 10%, transparent);
+}
+
+/* هاله نورانی ظریف در بک‌گراند */
+.cardGlow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+.card:hover .cardGlow {
+  opacity: 0.15;
+}
+
+/* ==========================
+   Top Section & Title
+========================== */
 .top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
+  align-items: flex-start;
+  margin-bottom: var(--space-2);
 }
 
 .title {
-  font-size: 12px;
-  letter-spacing: 0.3px;
-  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  color: var(--muted);
   text-transform: uppercase;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* icons style */
-
-.icon {
-  width: 44px;
-  height: 44px;
+/* ==========================
+   Dynamic Icons (SaaS 2026 Style)
+========================== */
+.iconWrapper {
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 14px;
-  background: linear-gradient(
-    135deg,
-    rgba(124, 92, 255, 0.18),
-    rgba(124, 92, 255, 0.08)
-  );
-  border: 1px solid rgba(124, 92, 255, 0.18);
+  border-radius: var(--radius-md);
   flex-shrink: 0;
-  transition: 0.2s;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.card:hover .icon {
-  transform: scale(1.06);
-  rotate: 360deg;
-}
-.icon svg {
+
+.iconSvg {
   width: 20px;
   height: 20px;
-  font-size: 22px;
-  transition: 0.2s;
-}
-.revenue {
-  background: rgba(34, 197, 94, 0.12);
-  color: #22c55e;
-}
-.card:hover .revenue {
-  background: rgba(34, 197, 94, 0.18);
-  box-shadow: 0 0 22px rgba(34, 197, 94, 0.25);
-}
-.users {
-  background: rgba(59, 130, 246, 0.12);
-  color: #3b82f6;
-}
-.card:hover .users {
-  background: rgba(59, 130, 246, 0.18);
-  box-shadow: 0 0 22px rgba(59, 130, 246, 0.25);
-}
-.projects {
-  background: rgba(124, 92, 255, 0.12);
-  color: #7c5cff;
-}
-.card:hover .projects {
-  background: rgba(124, 92, 255, 0.18);
-  box-shadow: 0 0 22px rgba(124, 92, 255, 0.25);
-}
-.growth {
-  background: rgba(249, 115, 22, 0.12);
-  color: #f97316;
-}
-.card:hover .growth {
-  background: rgba(249, 115, 22, 0.18);
-  box-shadow: 0 0 22px rgba(249, 115, 22, 0.25);
+  transition: transform 0.3s ease;
 }
 
-/* icons style */
+.card:hover .iconWrapper {
+  transform: scale(1.08);
+}
+
+.card:hover .iconSvg {
+  transform: scale(1.1);
+}
+
+/* استفاده از color-mix برای تولید هوشمند شفافیت از متغیرهای سیستم شما 
+*/
+.revenue {
+  color: var(--success);
+  background: color-mix(in srgb, var(--success) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--success) 20%, transparent);
+}
+.revenueGlow {
+  background: var(--success);
+}
+
+.users {
+  color: var(--info);
+  background: color-mix(in srgb, var(--info) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--info) 20%, transparent);
+}
+.usersGlow {
+  background: var(--info);
+}
+
+.projects {
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+}
+.projectsGlow {
+  background: var(--primary);
+}
+
+.growth {
+  color: var(--warning);
+  background: color-mix(in srgb, var(--warning) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--warning) 20%, transparent);
+}
+.growthGlow {
+  background: var(--warning);
+}
+
+/* ==========================
+   Middle (Value)
+========================== */
+.middle {
+  margin-bottom: var(--space-4);
+}
 
 .value {
-  font-size: clamp(32px, 8vw, 40px);
+  font-size: clamp(28px, 4vw, 36px);
   letter-spacing: -1px;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--title);
   line-height: 1;
-  white-space: nowrap;
-  min-width: 0;
-}
-@media (max-width: 500px) {
-  .value {
-    font-size: 25px;
-    font-weight: bolder;
-  }
+  margin: 0;
 }
 
-.chart {
+/* ==========================
+   Chart Wrapper
+========================== */
+.chartWrapper {
   width: 100%;
-  min-width: 0;
-  flex-shrink: 0;
+  height: 48px; /* ارتفاع ثابت برای جلوگیری از پرش 레이وت */
+  margin-bottom: var(--space-4);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
 }
 
+.card:hover .chartWrapper {
+  opacity: 1;
+}
+
+/* ==========================
+   Footer & Trend Badge
+========================== */
 .footer {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: nowrap;
+  gap: var(--space-3);
   margin-top: auto;
-  min-width: 0;
+  padding-top: var(--space-3);
+  border-top: 1px dashed color-mix(in srgb, var(--border) 60%, transparent);
 }
 
-.change {
+.changeBadge {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
   font-weight: 700;
+  font-size: 13px;
+}
+
+.trendIcon {
   font-size: 14px;
-  flex-shrink: 0;
-  white-space: nowrap;
+}
+
+/* داینامیک شدن رنگ برچسب تغییرات */
+.up {
+  color: var(--success);
+  background: color-mix(in srgb, var(--success) 12%, transparent);
+}
+
+.down {
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
 }
 
 .compare {
   color: var(--muted);
-  font-size: 13px;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 12.5px;
+  font-weight: 500;
   white-space: nowrap;
-}
-.up {
-  color: #22c55e;
-}
-
-.down {
-  color: #ef4444;
-}
-
-/* Tablet: 768px – 1023px */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .value {
-    font-size: clamp(32px, 4.5vw, 40px);
-  }
-}
-
-/* Laptop: 1024px – 1439px */
-@media (min-width: 1024px) and (max-width: 1439px) {
-  .value {
-    font-size: clamp(26px, 2.4vw, 36px);
-  }
-}
-
-/* Desktop: 1440px+ */
-@media (min-width: 1440px) {
-  .value {
-    font-size: 40px;
-  }
 }

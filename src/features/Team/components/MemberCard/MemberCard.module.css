@@ -6,12 +6,11 @@
   display: flex;
   flex-direction: column;
   background: var(--card);
-  border: 1px solid var(--border);
+  border: 0;
   border-radius: var(--radius-lg);
   padding: var(--space-5);
-  overflow: hidden; /* برای کنترل هاله پس‌زمینه */
+  overflow: hidden; 
   transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-  z-index: 1;
 }
 
 .card:hover {
@@ -19,10 +18,9 @@
   border-color: rgba(124, 92, 255, 0.3);
   box-shadow:
     0 12px 32px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(124, 92, 255, 0.05); /* سایه نرم و عمیق */
+    0 0 0 1px rgba(124, 92, 255, 0.05); 
 }
 
-/* هاله نوری بالای کارد (SaaS Aesthetic) */
 .glowBackground {
   position: absolute;
   top: 0;
@@ -43,7 +41,6 @@
   opacity: 1;
 }
 
-/* منوی دراپ‌داون در بالا سمت راست */
 .dropdownWrapper {
   position: absolute;
   top: var(--space-3);
@@ -84,7 +81,7 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--card); /* ایجاد فاصله بین عکس و حاشیه گرادیانت */
+  border: 2px solid var(--card); 
   background: var(--surface);
 }
 
@@ -92,11 +89,11 @@
 .statusDotWrapper {
   position: absolute;
   bottom: 2px;
-  right: 2px;
+  right: 10px;
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 3px solid var(--card); /* همرنگ پس‌زمینه کارد برای برش خوردن */
+  border: 3px solid var(--card); 
   display: flex;
   align-items: center;
   justify-content: center;
