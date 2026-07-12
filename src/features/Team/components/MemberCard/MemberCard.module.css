@@ -1,151 +1,222 @@
+/* ==========================
+   Card Base & Effects
+========================== */
 .card {
   position: relative;
-
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-
-  gap: 14px;
-
-  padding: 28px 22px;
-
-  overflow: visible;
-
-  transition:
-    transform 0.22s ease,
-    box-shadow 0.22s ease,
-    border-color 0.22s ease;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  overflow: hidden; /* برای کنترل هاله پس‌زمینه */
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 1;
 }
 
 .card:hover {
   transform: translateY(-4px);
+  border-color: rgba(124, 92, 255, 0.3);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(124, 92, 255, 0.05); /* سایه نرم و عمیق */
 }
 
+/* هاله نوری بالای کارد (SaaS Aesthetic) */
+.glowBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(
+    180deg,
+    rgba(124, 92, 255, 0.08) 0%,
+    transparent 100%
+  );
+  opacity: 0.5;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .glowBackground {
+  opacity: 1;
+}
+
+/* منوی دراپ‌داون در بالا سمت راست */
+.dropdownWrapper {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  z-index: 10;
+}
+
+/* ==========================
+   Avatar & Status Dot
+========================== */
+.avatarContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.avatarWrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(
+    135deg,
+    rgba(124, 92, 255, 0.4),
+    rgba(124, 92, 255, 0.05)
+  );
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card:hover .avatarWrapper {
+  transform: scale(1.05) rotate(2deg);
+}
 
 .avatar {
-  width: 72px;
-  height: 72px;
-
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
-
-  border: 3px solid rgba(124, 92, 255, 0.12);
-
-  transition:
-    transform 0.25s ease,
-    border-color 0.25s ease;
+  border: 2px solid var(--card); /* ایجاد فاصله بین عکس و حاشیه گرادیانت */
+  background: var(--surface);
 }
 
-.card:hover .avatar {
-  transform: scale(1.05);
-  border-color: rgba(124, 92, 255, 0.25);
+/* سیستم نقطه وضعیت روی آواتار */
+.statusDotWrapper {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid var(--card); /* همرنگ پس‌زمینه کارد برای برش خوردن */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.card h3 {
-  margin-top: 2px;
+.statusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  z-index: 2;
+}
 
-  font-size: 18px;
+/* افکت پالس (Ping) فقط برای حالت آنلاین */
+.statusPing {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.online .statusDot,
+.online .statusPing {
+  background: var(--success);
+}
+.online .statusPing {
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.away .statusDot {
+  background: var(--warning);
+}
+.away .statusPing {
+  display: none;
+}
+
+.offline .statusDot {
+  background: var(--muted);
+}
+.offline .statusPing {
+  display: none;
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* ==========================
+   User Info Section
+========================== */
+.userInfo {
+  text-align: center;
+  margin-bottom: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.name {
+  margin: 0;
+  font-size: 17px;
   font-weight: 700;
-
-  color: var(--text);
+  color: var(--title);
+  letter-spacing: -0.3px;
 }
 
 .email {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-
+  gap: var(--space-2);
   color: var(--muted);
-
   font-size: 13px;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
-.email svg {
-  flex-shrink: 0;
+.card:hover .email {
+  color: var(--text);
 }
 
-.bottom {
-  width: 100%;
-
+/* ==========================
+   Footer (Role & Status Label)
+========================== */
+.footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   margin-top: auto;
-
-  padding-top: 14px;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
 }
 
-.role {
-  padding: 6px 12px;
+.roleBadge {
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-hover);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
 
-  border-radius: 999px;
-
-  background: rgba(124, 92, 255, 0.08);
-
-  color: var(--primary);
-
+.statusLabel {
   font-size: 12px;
   font-weight: 600;
 }
 
-.status {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-
-  font-size: 12px;
-  font-weight: 600;
+.online.statusLabel {
+  color: var(--success);
 }
-
-.dot {
-  width: 8px;
-  height: 8px;
-
-  border-radius: 50%;
-
-  animation: pulse 2s infinite;
+.away.statusLabel {
+  color: var(--warning);
 }
-
-@keyframes pulse {
-  0% {
-    transform: scale(0.95);
-    opacity: 0.9;
-  }
-
-  70% {
-    transform: scale(1.35);
-    opacity: 0.4;
-  }
-
-  100% {
-    transform: scale(0.95);
-    opacity: 0.9;
-  }
-}
-
-.online {
-  color: #22c55e;
-}
-
-.online .dot {
-  background: #22c55e;
-}
-
-.away {
-  color: #f59e0b;
-}
-
-.away .dot {
-  background: #f59e0b;
-}
-
-.offline {
-  color: #94a3b8;
-}
-
-.offline .dot {
-  background: #94a3b8;
+.offline.statusLabel {
+  color: var(--muted);
 }

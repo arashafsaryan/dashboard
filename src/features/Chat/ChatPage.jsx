@@ -46,6 +46,7 @@ export default function ChatPage() {
             <ChatWindow
               messages={messages}
               onReply={setReplyMessage}
+              conversation={activeConversation}
               isLoading={messagesLoading}
             />
             <MessageInput

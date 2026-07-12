@@ -96,6 +96,29 @@
   }
 }
 
+/* Date Separator */
+.separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 18px 0;
+}
+.separator::before,
+.separator::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.separator span {
+  padding: 0 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--background);
+  border-radius: 999px;
+}
+
 /* ------------------- Responsive ------------------- */
 @media (max-width: 1024px) {
   .window {

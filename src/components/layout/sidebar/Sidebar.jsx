@@ -5,6 +5,7 @@ import {
   FiSettings,
   FiChevronsLeft,
   FiChevronsRight,
+  FiMoreVertical,
 } from "react-icons/fi";
 import { IoChatboxOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
@@ -13,31 +14,11 @@ import { useSidebar } from "../../../context/SidebarContext";
 import logo from "../../../assets/logo.png";
 
 const menu = [
-  {
-    label: "Dashboard",
-    icon: <FiHome />,
-    path: "/",
-  },
-  {
-    label: "Analytics",
-    icon: <FiBarChart2 />,
-    path: "/Analytics",
-  },
-  {
-    label: "Chat",
-    icon: <IoChatboxOutline />,
-    path: "/Chat",
-  },
-  {
-    label: "Team",
-    icon: <FiUsers />,
-    path: "/Team",
-  },
-  {
-    label: "Settings",
-    icon: <FiSettings />,
-    path: "/Settings",
-  },
+  { label: "Dashboard", icon: <FiHome />, path: "/" },
+  { label: "Analytics", icon: <FiBarChart2 />, path: "/Analytics" },
+  { label: "Chat", icon: <IoChatboxOutline />, path: "/Chat", badge: 3 },
+  { label: "Team", icon: <FiUsers />, path: "/Team" },
+  { label: "Settings", icon: <FiSettings />, path: "/Settings" },
 ];
 
 export default function Sidebar({ collapsed, setCollapsed }) {
@@ -60,18 +41,17 @@ export default function Sidebar({ collapsed, setCollapsed }) {
           ${mobileOpen ? styles.open : ""}
         `}
       >
+        {/* هدر سایدبار */}
         <div className={styles.top}>
           <div className={styles.brand}>
             <div className={styles.logoWrapper}>
               <img src={logo} alt="ARASH" className={styles.logoImage} />
             </div>
 
-            {!collapsed && (
-              <div className={styles.brandInfo}>
-                <h2>ARASH</h2>
-                <span>Admin Dashboard</span>
-              </div>
-            )}
+            <div className={styles.brandInfo}>
+              <h2>ARASH</h2>
+              <span>Workspace</span>
+            </div>
           </div>
 
           <button className={styles.toggle} onClick={toggleSidebar}>
@@ -79,26 +59,55 @@ export default function Sidebar({ collapsed, setCollapsed }) {
           </button>
         </div>
 
-        <nav className={styles.menu}>
-          {menu.map((item, index) => (
-            <NavLink
-              key={index}
-              to={item.path}
-              className={({ isActive }) =>
-                `${styles.menuItem} ${isActive ? styles.active : ""}`
-              }
-              onClick={() => {
-                if (window.innerWidth < 1000) {
-                  closeMobileSidebar();
+        {/* منوی اصلی */}
+        <div className={styles.menuSection}>
+          <span className={styles.sectionTitle}>Main Menu</span>
+          <nav className={styles.menu}>
+            {menu.map((item, index) => (
+              <NavLink
+                key={index}
+                to={item.path}
+                className={({ isActive }) =>
+                  `${styles.menuItem} ${isActive ? styles.active : ""}`
                 }
-              }}
-            >
-              <span className={styles.activeBar}></span>
-              <span className={styles.icon}>{item.icon}</span>
-              {!collapsed && <span className={styles.label}>{item.label}</span>}
-            </NavLink>
-          ))}
-        </nav>
+                onClick={() => {
+                  if (window.innerWidth < 1000) {
+                    closeMobileSidebar();
+                  }
+                }}
+              >
+                <div className={styles.itemContent}>
+                  <span className={styles.icon}>{item.icon}</span>
+                  <span className={styles.label}>{item.label}</span>
+                </div>
+
+                {item.badge && (
+                  <span className={styles.badge}>{item.badge}</span>
+                )}
+
+                <span className={styles.activeIndicator}></span>
+              </NavLink>
+            ))}
+          </nav>
+        </div>
+
+        {/* فوتر کاربر */}
+        <div className={styles.footer}>
+          <div className={styles.userProfile}>
+            <img
+              src="https://i.pravatar.cc/150?img=56"
+              alt="User"
+              className={styles.userAvatar}
+            />
+            <div className={styles.userInfo}>
+              <span className={styles.userName}>Arash Admin</span>
+              <span className={styles.userRole}>Pro Plan</span>
+            </div>
+            <button className={styles.moreBtn}>
+              <FiMoreVertical />
+            </button>
+          </div>
+        </div>
       </aside>
     </>
   );

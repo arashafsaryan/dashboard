@@ -1,5 +1,14 @@
+/* ------------------- Layout & Container ------------------- */
 .row {
   display: flex;
+  align-items: flex-end;
+  margin-top: 12px;
+  gap: 8px;
+  position: relative;
+}
+
+.compact {
+  margin-top: 2px;
 }
 
 .me {
@@ -10,16 +19,217 @@
   justify-content: flex-start;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  max-width: 72%;
+  min-width: 0;
+}
+
+/* ------------------- Avatar & Header ------------------- */
+.avatarWrapper {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  margin-bottom: 4px;
+  margin-left: 4px;
+}
+
+.sender {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 0.2px;
+}
+
+/* ------------------- Bubbles Base ------------------- */
 .bubble {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-width: 65%;
-  padding: 14px 16px;
-  border-radius: 18px;
-  animation: fade 0.22s ease;
+  width: fit-content;
+  overflow: visible;
+  max-width: 100%;
+  padding: 8px 12px;
+  animation: fade 0.2s ease-out forwards;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
+
+/* ------------------- Bubble Shapes (Telegram Logic) ------------------- */
+/* پیام‌های دریافتی (سمت چپ) */
+.otherBubble {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.otherBubble.first {
+  border-bottom-left-radius: 6px;
+}
+
+.otherBubble.middle {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.otherBubble.last {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 4px;
+}
+
+/* در صورتی که فقط یک پیام باشد (اول و آخر) */
+.otherBubble.first.last {
+  border-radius: 16px 16px 16px 4px;
+}
+
+/* پیام‌های ارسالی (سمت راست) */
+.meBubble {
+  background: var(--primary);
+  color: #ffffff;
+  border-radius: 16px;
+}
+
+.meBubble.first {
+  border-bottom-right-radius: 6px;
+}
+
+.meBubble.middle {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.meBubble.last {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 4px;
+}
+
+/* در صورتی که فقط یک پیام باشد (اول و آخر) */
+.meBubble.first.last {
+  border-radius: 16px 16px 4px 16px;
+}
+
+/* ------------------- Content Types ------------------- */
+.text {
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+.spacer {
+  display: inline-block;
+  width: 65px;
+  height: 3px;
+}
+
+.image {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 10px;
+  margin-bottom: 4px;
+}
+
+.audio {
+  width: 240px;
+  height: 40px;
+}
+
+.file {
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ------------------- Footer (Time & Status) ------------------- */
+.footer {
+  position: absolute;
+  bottom: 6px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.8;
+  background: inherit;
+  padding: 0 2px;
+  border-radius: 4px;
+}
+
+.otherBubble .footer {
+  color: var(--muted);
+}
+
+.meBubble .footer {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+}
+
+.seen {
+  color: #4ade80;
+}
+
+/* ------------------- Reply Preview ------------------- */
+.replyPreview {
+  margin-bottom: 6px;
+  padding: 4px 10px;
+  border-left: 3px solid rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 4px 8px 8px 4px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.replyPreview:hover {
+  opacity: 0.85;
+}
+
+.otherBubble .replyPreview {
+  border-left-color: var(--primary);
+  background: rgba(124, 92, 255, 0.08);
+}
+
+.replyPreview strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.replyPreview p {
+  font-size: 13px;
+  opacity: 0.85;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0;
+  max-width: 200px;
+}
+
+/* ------------------- Hover Menu ------------------- */
 .menu {
   position: absolute;
   top: 8px;
@@ -27,6 +237,7 @@
   opacity: 0;
   transition: opacity 0.2s ease;
 }
+
 .bubble:hover .actions {
   opacity: 1;
   visibility: visible;
@@ -36,61 +247,12 @@
 .bubble:hover .menu {
   opacity: 1;
 }
-.other .bubble {
-  background: var(--surface);
-  border: 1px solid var(--border);
-}
 
-.me .bubble {
-  background: var(--primary);
-  color: white;
-}
-
-.text {
-  font-size: 14px;
-  line-height: 1.6;
-  word-break: break-word;
-}
-
-.image {
-  width: 100%;
-  border-radius: 12px;
-}
-
-.audio {
-  width: 260px;
-}
-
-.file {
-  padding: 12px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.footer {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 8px;
-
-  font-size: 11px;
-  opacity: 0.75;
-}
-
-.status {
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-}
-
-.seen {
-  color: var(--info);
-}
-
+/* ------------------- Animations ------------------- */
 @keyframes fade {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -98,28 +260,13 @@
   }
 }
 
-/* reply */
+/* ------------------- Responsive ------------------- */
+@media (max-width: 640px) {
+  .content {
+    max-width: 85%;
+  }
 
-.replyPreview {
-  margin-bottom: 8px;
-  padding-left: 10px;
-  border-left: 3px solid rgba(255, 255, 255, 0.35);
-}
-
-.other .replyPreview {
-  border-left-color: var(--primary);
-}
-
-.replyPreview strong {
-  display: block;
-  font-size: 12px;
-  margin-bottom: 2px;
-}
-
-.replyPreview p {
-  font-size: 12px;
-  opacity: 0.8;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  .text {
+    font-size: 14.5px;
+  }
 }

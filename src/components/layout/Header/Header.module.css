@@ -32,28 +32,34 @@
 }
 .menuBtn {
   color: var(--text);
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   display: none;
   align-items: center;
   justify-content: center;
-  border: none;
-  border-radius: 12px;
-  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
   cursor: pointer;
-  font-size: 22px;
+  font-size: 20px;
+  transition: all 0.2s ease;
 }
-@media (max-width: 1024px) {
-  .title {
-    font-size: 15px;
-  }
+
+.menuBtn:hover {
+  background: var(--surface-hover);
+  color: var(--title);
 }
+
+.menuBtn:active {
+  transform: scale(0.92);
+}
+
 @media (max-width: 1000px) {
   .menuBtn {
     display: flex;
   }
   .left {
-    width: 42px;
+    width: auto;
   }
 }
 

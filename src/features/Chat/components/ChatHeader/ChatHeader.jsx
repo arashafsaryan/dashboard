@@ -41,5 +41,6 @@ export default function ChatHeader({ conversation }) {
         </button>
       </div>
     </header>
+    
   );
 }

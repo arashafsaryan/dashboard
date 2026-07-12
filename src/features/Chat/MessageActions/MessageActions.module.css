@@ -1,6 +1,6 @@
 .actions {
   position: absolute;
-  top: -30px;
+  top: -38px;
   right: 12px;
   display: flex;
   align-items: center;
@@ -18,7 +18,7 @@
     opacity 0.18s ease,
     transform 0.18s ease,
     visibility 0.18s ease;
-  z-index: 20;
+  z-index: 30;
 }
 
 .visible {

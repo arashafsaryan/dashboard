@@ -17,8 +17,8 @@ const commands = [
   },
   {
     id: 3,
-    label: "Projects",
-    path: "/Projects",
+    label: "Chat",
+    path: "/Chat",
   },
   {
     id: 4,

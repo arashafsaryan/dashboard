@@ -1,42 +1,237 @@
+/* ==========================
+   Header Container
+========================== */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 24px;
-
-  margin-bottom: 36px;
+  gap: var(--space-5);
+  margin-bottom: var(--space-7);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--border);
 }
 
-.header h1 {
-  font-size: 34px;
-  font-weight: 700;
-
-  color: var(--text);
-
-  margin-bottom: 8px;
+.leftContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
-.header p {
-  max-width: 560px;
+/* ==========================
+   Title Section & Icon
+========================== */
+.titleSection {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
 
-  font-size: 15px;
-  line-height: 1.7;
+.iconBox {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 
+  background: linear-gradient(
+    135deg,
+    rgba(124, 92, 255, 0.15),
+    rgba(124, 92, 255, 0.05)
+  );
+  border: 1px solid rgba(124, 92, 255, 0.2);
+  border-radius: var(--radius-md);
+  color: var(--primary);
+
+  box-shadow: 0 8px 16px rgba(124, 92, 255, 0.1);
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.titleRow h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--title);
+  letter-spacing: -0.5px; /* تایپوگرافی مدرن */
+  margin: 0;
+  line-height: 1.1;
+}
+
+/* ==========================
+   Status Badge
+========================== */
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(34, 197, 94, 0.1); /* سبز محو */
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 20px;
+  color: var(--success);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  background: var(--success);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+.description {
+  max-width: 500px;
+  font-size: 14.5px;
+  line-height: 1.6;
   color: var(--muted);
+  margin: 0;
 }
 
-@media (max-width: 768px) {
+/* ==========================
+   Active Users (Overlapping Avatars)
+========================== */
+.activeUsers {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-left: 64px; /* هم‌تراز کردن با متن (عرض آیکون + فاصله) */
+}
+
+.avatarGroup {
+  display: flex;
+  align-items: center;
+}
+
+.avatarGroup img,
+.avatarMore {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--bg); /* استفاده از رنگ پس‌زمینه سایت برای جدا کردن عکس‌ها */
+  object-fit: cover;
+  margin-left: -10px; /* رفتن عکس‌ها روی هم */
+  transition: transform 0.2s ease;
+}
+
+.avatarGroup img:first-child {
+  margin-left: 0;
+}
+
+.avatarGroup img:hover {
+  transform: translateY(-4px) scale(1.1);
+  z-index: 10;
+}
+
+.avatarMore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 700;
+  z-index: 1;
+}
+
+.activeText {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ==========================
+   Actions (Buttons)
+========================== */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.secondaryBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.secondaryBtn:hover {
+  background: var(--surface-hover);
+  color: var(--title);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+
+
+/* ==========================
+   Responsive
+========================== */
+@media (max-width: 850px) {
   .header {
     flex-direction: column;
-
     align-items: flex-start;
+    gap: var(--space-6);
   }
 
-  .header h1 {
+  .activeUsers {
+    margin-left: 0;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 500px) {
+  .titleRow h1 {
     font-size: 26px;
   }
 
-  .header p {
-    font-size: 14px;
+  .iconBox {
+    width: 40px;
+    height: 40px;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+  }
+
+  .actions > * {
+    width: 100%;
+    justify-content: center;
   }
 }

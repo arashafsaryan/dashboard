@@ -1,8 +1,8 @@
+import { useEffect, useRef, useState } from "react";
 import { Reply, Heart, MoreHorizontal } from "lucide-react";
-
 import styles from "./MessageActions.module.css";
 import MoreMenu from "./MoreMenu";
-import { useState } from "react";
+import Portal from "./Portal";
 
 export default function MessageActions({
   onReply,
@@ -12,6 +12,33 @@ export default function MessageActions({
   message,
 }) {
   const [open, setOpen] = useState(false);
+  const buttonRef = useRef(null);
+  const [menuPosition, setMenuPosition] = useState({
+    top: 0,
+    left: 0,
+  });
+  const menuRef = useRef(null);
+  useEffect(() => {
+    function handleClick(e) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(e.target) &&
+        !buttonRef.current.contains(e.target)
+      ) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+  const handleMore = () => {
+    const rect = buttonRef.current.getBoundingClientRect();
+    setMenuPosition({
+      top: rect.bottom + 8,
+      left: rect.right - 180,
+    });
+    setOpen((prev) => !prev);
+  };
 
   return (
     <div className={`${styles.actions} ${visible ? styles.visible : ""}`}>
@@ -33,18 +60,25 @@ export default function MessageActions({
 
       <button
         className={`${styles.action} ${styles.more}`}
-        onClick={() => setOpen(!open)}
+        onClick={handleMore}
+        ref={buttonRef}
         title="More"
       >
         <MoreHorizontal size={16} />
       </button>
-      <MoreMenu
-        open={open}
-        onCopy={() => {}}
-        onEdit={() => {}}
-        onPin={() => {}}
-        onDelete={() => {}}
-      />
+      {open && (
+        <Portal>
+          <MoreMenu
+            open={open}
+            onCopy={() => {}}
+            onEdit={() => {}}
+            onPin={() => {}}
+            onDelete={() => {}}
+            position={menuPosition}
+            ref={menuRef}
+          />
+        </Portal>
+      )}
     </div>
   );
 }
