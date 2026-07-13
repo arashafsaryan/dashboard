@@ -12,7 +12,6 @@ import RecordingBar from "./VoiceRecorder/RecordingBar";
 
 export default function MessageInput({
   onSendMessage,
-  conversationId,
   replyMessage,
   onCancelReply,
 }) {
@@ -23,11 +22,6 @@ export default function MessageInput({
   const [seconds, setSeconds] = useState(0);
 
   const textareaRef = useRef(null);
-
-  useEffect(() => {
-    if (!conversationId) return;
-    textareaRef.current?.focus();
-  }, [conversationId]);
 
   useEffect(() => {
     if (!isRecording) return;
@@ -82,6 +76,7 @@ export default function MessageInput({
       <div className={styles.wrapper}>
         {isRecording ? (
           <RecordingBar
+            className={styles.recordingBar}
             seconds={seconds}
             onCancel={() => {
               setIsRecording(false);

@@ -1,13 +1,18 @@
 import styles from "./ChatHeader.module.css";
 import { Phone, Video, Search } from "lucide-react";
-// import FilterDropdown from "../../../../components/ui/FilterDropdown/FilterDropdown";
+import { ArrowLeft } from "lucide-react";
 
-export default function ChatHeader({ conversation }) {
+export default function ChatHeader({ conversation, isMobile, onBack }) {
   if (!conversation) return null;
 
   return (
     <header className={styles.header}>
       <div className={styles.left}>
+        {isMobile && (
+          <button className={styles.backButton} onClick={onBack}>
+            <ArrowLeft size={20} />
+          </button>
+        )}
         <div className={styles.avatarWrapper}>
           <img
             src={conversation.avatar}
@@ -24,12 +29,7 @@ export default function ChatHeader({ conversation }) {
           <span>{conversation.online ? "Online" : "Last visit recently"}</span>
         </div>
       </div>
-
       <div className={styles.actions}>
-        {/* <FilterDropdown
-          iconOnly
-          options={["View Profile", "Mute", "Block", "Delete Chat"]}
-        /> */}
         <button>
           <Search size={18} />
         </button>
@@ -41,6 +41,5 @@ export default function ChatHeader({ conversation }) {
         </button>
       </div>
     </header>
-    
   );
 }

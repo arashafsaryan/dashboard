@@ -1,5 +1,5 @@
-import { useState } from "react";
-
+/* eslint-disable react-hooks/set-state-in-effect */
+import { useState, useEffect } from "react";
 import styles from "./ChatPage.module.css";
 
 import ChatSidebar from "./components/ChatSidebar/ChatSidebar";
@@ -10,10 +10,13 @@ import EmptyChat from "./components/EmptyChat/EmptyChat";
 
 import { useConversations } from "./hooks/useConversations";
 import { useMessages } from "./hooks/useMessages";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 export default function ChatPage() {
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [replyMessage, setReplyMessage] = useState(null);
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const [mobileView, setMobileView] = useState("list");
 
   const {
     conversations,
@@ -30,72 +33,98 @@ export default function ChatPage() {
   const activeConversation = conversations.find(
     (item) => item.id === selectedConversation,
   );
+  useEffect(() => {
+    if (!isMobile) {
+      setMobileView("chat");
+    } else {
+      if (!selectedConversation) {
+        setMobileView("list");
+      }
+    }
+  }, [isMobile, selectedConversation]);
 
   return (
     <div className={styles.page}>
-      <ChatSidebar
-        conversations={conversations}
-        isLoading={conversationsLoading}
-        selectedConversation={selectedConversation}
-        onSelectConversation={setSelectedConversation}
-      />
-      <section className={styles.chat}>
-        {selectedConversation ? (
-          <>
-            <ChatHeader conversation={activeConversation} />
-            <ChatWindow
-              messages={messages}
-              onReply={setReplyMessage}
-              conversation={activeConversation}
-              isLoading={messagesLoading}
-            />
-            <MessageInput
-              conversationId={selectedConversation}
-              replyMessage={replyMessage}
-              onCancelReply={() => setReplyMessage(null)}
-              onSendMessage={(text) => {
-                const newMessage = {
-                  id: Date.now(),
-                  sender: "me",
-                  senderId: "me",
-                  type: "text",
-                  text,
-                  replyTo: replyMessage,
-                  time: new Date().toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  }),
-                  status: "sent",
-                };
+      {(!isMobile || mobileView === "list") && (
+        <ChatSidebar
+          conversations={conversations}
+          isLoading={conversationsLoading}
+          selectedConversation={selectedConversation}
+          onSelectConversation={(id) => {
+            setSelectedConversation(id);
+            if (isMobile) {
+              setMobileView("chat");
+            }
+          }}
+        />
+      )}
 
-                setMessages((prev) => [...prev, newMessage]);
-                setReplyMessage(null);
-                setConversations((prev) => {
-                  const updated = prev.map((item) =>
-                    item.id === selectedConversation
-                      ? {
-                          ...item,
-                          lastMessage: text,
-                          lastTime: newMessage.time,
-                        }
-                      : item,
-                  );
+      {(!isMobile || mobileView === "chat") && (
+        <section className={styles.chat}>
+          {selectedConversation ? (
+            <>
+              <ChatHeader
+                conversation={activeConversation}
+                isMobile={isMobile}
+                onBack={() => {
+                  setMobileView("list");
+                  setReplyMessage(null);
+                }}
+              />
+              <ChatWindow
+                messages={messages}
+                onReply={setReplyMessage}
+                conversation={activeConversation}
+                isLoading={messagesLoading}
+              />
+              <MessageInput
+                conversationId={selectedConversation}
+                replyMessage={replyMessage}
+                onCancelReply={() => setReplyMessage(null)}
+                onSendMessage={(text) => {
+                  const newMessage = {
+                    id: Date.now(),
+                    sender: "me",
+                    senderId: "me",
+                    type: "text",
+                    text,
+                    replyTo: replyMessage,
+                    time: new Date().toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    }),
+                    status: "sent",
+                  };
 
-                  updated.sort((a, b) => {
-                    if (a.id === selectedConversation) return -1;
-                    if (b.id === selectedConversation) return 1;
-                    return 0;
+                  setMessages((prev) => [...prev, newMessage]);
+                  setReplyMessage(null);
+                  setConversations((prev) => {
+                    const updated = prev.map((item) =>
+                      item.id === selectedConversation
+                        ? {
+                            ...item,
+                            lastMessage: text,
+                            lastTime: newMessage.time,
+                          }
+                        : item,
+                    );
+
+                    updated.sort((a, b) => {
+                      if (a.id === selectedConversation) return -1;
+                      if (b.id === selectedConversation) return 1;
+                      return 0;
+                    });
+
+                    return updated;
                   });
-
-                  return updated;
-                });
-              }}
-            />
-          </>
-        ) : (
-          <EmptyChat />
-        )}
-      </section>
+                }}
+              />
+            </>
+          ) : (
+            !isMobile && <EmptyChat />
+          )}
+        </section>
+      )}
     </div>
   );
 }

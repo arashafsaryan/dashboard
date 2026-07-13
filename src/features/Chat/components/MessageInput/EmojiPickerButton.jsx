@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import EmojiPicker from "emoji-picker-react";
-
 import { Smile } from "lucide-react";
 
 import styles from "./EmojiPickerButton.module.css";
@@ -9,8 +8,22 @@ import styles from "./EmojiPickerButton.module.css";
 export default function EmojiPickerButton({ onSelect }) {
   const [open, setOpen] = useState(false);
 
+  const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div className={styles.wrapper}>
+    <div ref={wrapperRef} className={styles.wrapper}>
       <button
         className={styles.button}
         onClick={() => setOpen((prev) => !prev)}
@@ -29,7 +42,6 @@ export default function EmojiPickerButton({ onSelect }) {
             }}
             onEmojiClick={(emoji) => {
               onSelect(emoji.emoji);
-
               setOpen(false);
             }}
           />

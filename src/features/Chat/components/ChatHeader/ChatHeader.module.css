@@ -14,6 +14,24 @@
   gap: 15px;
 }
 
+.backButton {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text);
+  transition: 0.2s;
+}
+
+.backButton:hover {
+  background: var(--surface-hover);
+}
+
 .avatarWrapper {
   position: relative;
 }
@@ -72,4 +90,58 @@
 .actions button:hover {
   background: var(--surface-hover);
   color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 64px;
+    padding: 0 14px;
+  }
+  .left {
+    gap: 10px;
+  }
+  .left h3 {
+    font-size: 15px;
+    line-height: 1.2;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .left span {
+    font-size: 11px;
+    margin-top: 1px;
+  }
+  .header h2 {
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+  .search {
+    height: 48px;
+    border-radius: 18px;
+  }
+  .search input {
+    font-size: 16px;
+  }
+  .avatar {
+    width: 45px;
+    height: 45px;
+  }
+  .online {
+    width: 10px;
+    height: 10px;
+  }
+  .actions {
+    gap: 4px;
+  }
+  .actions button {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+  .backButton {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
 }

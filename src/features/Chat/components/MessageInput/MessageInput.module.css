@@ -7,8 +7,12 @@
   flex-shrink: 0;
   z-index: 5;
   position: relative;
+  overflow: visible;
   /* border-top: 1px solid var(--border); */
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.02);
+  transition:
+    padding 0.25s,
+    box-shadow 0.25s;
 }
 
 /* ------------------- Buttons ------------------- */
@@ -48,18 +52,20 @@
   flex: 1;
   display: flex;
   align-items: flex-end;
+
   gap: 12px;
   padding: 8px 10px 8px 16px;
   border: 1px solid var(--border);
-  border-radius: 24px; 
+  border-radius: 24px;
   background: var(--background);
-  min-height: 56px;
+  min-height: 52px;
   transition: all 0.3s ease;
 }
 
 .inputWrapper:focus-within {
   border-color: var(--primary);
   background: var(--surface);
+  transform: translateY(-1px);
 }
 
 .inputWrapper textarea {
@@ -73,7 +79,7 @@
   font-size: 14px;
   line-height: 1.6;
   min-height: 28px;
-  max-height: 140px;
+  max-height: 180px;
   overflow-y: auto;
 }
 
@@ -83,7 +89,7 @@
 }
 
 .inputWrapper:focus-within textarea::placeholder {
-  color: rgba(124, 92, 255, 0.5); 
+  color: rgba(124, 92, 255, 0.5);
 }
 
 /* Custom Scrollbar for Textarea */
@@ -112,7 +118,7 @@
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 50%; 
+  border-radius: 50%;
   background: var(--primary);
   color: white;
   cursor: pointer;
@@ -178,8 +184,8 @@
 }
 
 .replyContent {
-  display: flex;
-  flex-direction: column;
+  flex: 1;
+  min-width: 0;
 }
 
 .replyContent strong {
@@ -196,7 +202,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 300px;
+  max-width: none;
 }
 
 .replyClose {
@@ -216,7 +222,7 @@
 
 .replyClose:hover {
   color: var(--danger);
-  background: rgba(255, 77, 79, 0.1); 
+  background: rgba(255, 77, 79, 0.1);
   transform: rotate(90deg);
 }
 
@@ -233,23 +239,45 @@
 }
 
 /* ------------------- Responsive ------------------- */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .wrapper {
-    padding: 12px;
-    gap: 10px;
+    padding: 10px 12px;
+    gap: 8px;
   }
-
+  .inputRow {
+    gap: 8px;
+  }
+  .inputWrapper {
+    min-height: 52px;
+    padding: 6px 8px 6px 12px;
+    border-radius: 22px;
+  }
+  .inputWrapper textarea {
+    font-size: 16px;
+    line-height: 1.45;
+  }
   .iconButton {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
   }
-
   .send {
     width: 38px;
     height: 38px;
   }
-
+  .replyBox {
+    padding: 10px 12px;
+  }
   .replyContent p {
-    max-width: 200px;
+    max-width: 170px;
+  }
+  .recordingBar {
+    min-height: 52px;
+  }
+}
+
+/*زیر آن نرود Input , دارند  Home این باعث می‌شود روی آیفون‌هایی که نوار. */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .wrapper {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
   }
 }
