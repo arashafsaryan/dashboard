@@ -1,17 +1,11 @@
 .bar {
   flex: 1;
-
   display: flex;
   align-items: center;
-
   gap: 18px;
-
   padding: 12px 18px;
-
   border-radius: 18px;
-
   border: 1px solid var(--border);
-
   background: var(--background);
 }
 
@@ -19,21 +13,14 @@
 .send {
   width: 40px;
   height: 40px;
-
   border: none;
-
   border-radius: 12px;
-
   cursor: pointer;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   background: transparent;
-
   color: var(--muted);
-
   transition: 0.2s;
 }
 
@@ -48,26 +35,29 @@
 
 .timer {
   font-weight: 600;
-
   min-width: 60px;
 }
 
 .wave {
   flex: 1;
-
   display: flex;
-
   align-items: center;
-
   gap: 4px;
 }
 
 .wave span {
   width: 4px;
-
   border-radius: 999px;
-
   background: var(--primary);
-
   animation: wave 1s infinite ease-in-out;
+}
+@media (max-width: 400px) {
+  .cancel,
+  .send {
+    width: 30px;
+    height: 30px;
+  }
+  .bar {
+  gap: 0px;
+}
 }

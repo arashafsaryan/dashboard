@@ -37,12 +37,12 @@ export default function EmojiPickerButton({ onSelect }) {
             lazyLoadEmojis
             theme="auto"
             skinTonesDisabled
+            searchDisabled
             previewConfig={{
               showPreview: false,
             }}
             onEmojiClick={(emoji) => {
               onSelect(emoji.emoji);
-              setOpen(false);
             }}
           />
         </div>

@@ -7,10 +7,10 @@ export default function ChatWindow({
   isLoading,
   onReply,
   conversation,
+  onReaction,
 }) {
   const bottomRef = useRef(null);
   const windowRef = useRef(null);
-
   useEffect(() => {
     const container = windowRef.current;
     if (!container) return;
@@ -76,6 +76,7 @@ export default function ChatWindow({
             key={message.id}
             message={message}
             onReply={onReply}
+            onReaction={onReaction}
             conversation={conversation}
           />
         ))}

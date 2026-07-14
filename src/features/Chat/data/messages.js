@@ -9,6 +9,7 @@ export const messages = {
       date: "Today",
       time: "09:20",
       status: "seen",
+      reactions: [],
     },
     {
       id: 2,
@@ -19,6 +20,7 @@ export const messages = {
       date: "Today",
       time: "09:22",
       status: "seen",
+      reactions: [],
     },
     {
       id: 3,
@@ -29,6 +31,7 @@ export const messages = {
       date: "Today",
       time: "09:35",
       status: "delivered",
+      reactions: [],
     },
     {
       id: 4,
@@ -39,6 +42,7 @@ export const messages = {
       date: "Today",
       time: "09:36",
       status: "delivered",
+      reactions: [],
     },
   ],
 
@@ -52,6 +56,7 @@ export const messages = {
       date: "Yesterday",
       time: "18:42",
       status: "seen",
+      reactions: [],
     },
   ],
 
@@ -65,6 +70,7 @@ export const messages = {
       date: "Yesterday",
       time: "08:20",
       status: "seen",
+      reactions: [],
     },
   ],
 
@@ -78,6 +84,7 @@ export const messages = {
       date: "Monday",
       time: "14:10",
       status: "seen",
+      reactions: [],
     },
   ],
 
@@ -91,6 +98,7 @@ export const messages = {
       date: "Sunday",
       time: "07:55",
       status: "delivered",
+      reactions: [],
     },
   ],
 
@@ -104,6 +112,7 @@ export const messages = {
       date: "Saturday",
       time: "07:35",
       status: "delivered",
+      reactions: [],
     },
   ],
 
@@ -117,6 +126,7 @@ export const messages = {
       date: "Friday",
       time: "09:55",
       status: "delivered",
+      reactions: [],
     },
   ],
 
@@ -130,6 +140,7 @@ export const messages = {
       date: "Thursday",
       time: "07:05",
       status: "delivered",
+      reactions: [],
     },
   ],
 };

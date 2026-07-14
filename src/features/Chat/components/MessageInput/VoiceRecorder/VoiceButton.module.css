@@ -1,21 +1,14 @@
 .button {
   width: 42px;
   height: 42px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border: none;
-
   border-radius: 14px;
-
   background: var(--primary);
-
   color: white;
-
   cursor: pointer;
-
   transition: 0.22s;
 }
 
@@ -25,4 +18,13 @@
 
 .button:active {
   transform: scale(0.95);
+}
+
+@media (max-width: 400px) {
+  .button {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    margin: auto;
+  }
 }

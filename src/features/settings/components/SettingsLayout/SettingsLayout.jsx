@@ -14,7 +14,7 @@ export default function SettingsLayout() {
         <SettingsMobileNavigationProvider>
           <SettingsHeader />
           <div className={styles.layout}>
-            <aside>
+            <aside className={styles.settingsNavigation}>
               <SettingsNavigation />
             </aside>
 

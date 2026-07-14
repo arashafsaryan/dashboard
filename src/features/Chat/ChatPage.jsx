@@ -12,6 +12,8 @@ import { useConversations } from "./hooks/useConversations";
 import { useMessages } from "./hooks/useMessages";
 import useMediaQuery from "../../hooks/useMediaQuery";
 
+import { toggleReaction } from "./utils/toggleReaction";
+
 export default function ChatPage() {
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [replyMessage, setReplyMessage] = useState(null);
@@ -42,6 +44,10 @@ export default function ChatPage() {
       }
     }
   }, [isMobile, selectedConversation]);
+
+  const handleReaction = (messageId, emoji) => {
+    setMessages((prev) => toggleReaction(prev, messageId, emoji));
+  };
 
   return (
     <div className={styles.page}>
@@ -74,6 +80,7 @@ export default function ChatPage() {
               <ChatWindow
                 messages={messages}
                 onReply={setReplyMessage}
+                onReaction={handleReaction}
                 conversation={activeConversation}
                 isLoading={messagesLoading}
               />

@@ -16,3 +16,10 @@
   background: var(--surface-hover);
   color: var(--text);
 }
+
+@media (max-width: 400px) {
+  .button {
+    width: 30px;
+    height: 30px;
+  }
+}

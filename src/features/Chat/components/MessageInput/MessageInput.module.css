@@ -8,43 +8,16 @@
   z-index: 5;
   position: relative;
   overflow: visible;
-  /* border-top: 1px solid var(--border); */
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.02);
   transition:
     padding 0.25s,
     box-shadow 0.25s;
 }
 
-/* ------------------- Buttons ------------------- */
-.iconButton {
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 14px;
-  background: transparent;
-  color: var(--muted);
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.iconButton:hover {
-  background: var(--surface-hover);
-  color: var(--text);
-  transform: translateY(-1px);
-}
-
-.iconButton:active {
-  transform: translateY(1px);
-}
-
 /* ------------------- Input Area ------------------- */
 .inputRow {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 12px;
 }
 
@@ -52,9 +25,8 @@
   flex: 1;
   display: flex;
   align-items: flex-end;
-
   gap: 12px;
-  padding: 8px 10px 8px 16px;
+  padding: 6px 8px 6px 16px;
   border: 1px solid var(--border);
   border-radius: 24px;
   background: var(--background);
@@ -77,14 +49,17 @@
   color: var(--text);
   font: inherit;
   font-size: 14px;
-  line-height: 1.6;
-  min-height: 28px;
-  max-height: 180px;
+  line-height: 20px;
+  padding: 10px 0;
+  min-height: 40px;
+  max-height: 140px;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .inputWrapper textarea::placeholder {
   color: var(--muted);
+  font-size: 14px;
   transition: color 0.2s;
 }
 
@@ -108,6 +83,21 @@
 
 .inputWrapper textarea::-webkit-scrollbar-thumb:hover {
   background-color: var(--muted);
+}
+
+/* ------------------- Recording Bar ------------------- */
+/* اضافه شده: استایل پایه برای بخش ضبط صدا */
+.recordingBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 52px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 8px 16px;
+  transition: all 0.3s ease;
 }
 
 /* ------------------- Send Button ------------------- */
@@ -253,7 +243,7 @@
     border-radius: 22px;
   }
   .inputWrapper textarea {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.45;
   }
   .iconButton {
@@ -275,7 +265,26 @@
   }
 }
 
-/*زیر آن نرود Input , دارند  Home این باعث می‌شود روی آیفون‌هایی که نوار. */
+/* 400px */
+@media (max-width: 400px) {
+  .wrapper {
+    padding: 5px;
+    gap: 5;
+  }
+  .inputWrapper {
+    min-height: 30px;
+    padding: 5px 6px 5px 10px;
+  }
+  .inputWrapper textarea {
+    font-size: 12px;
+  }
+  .send {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* باعث می‌شود روی آیفون‌هایی که نوار Home دارند، Input زیر آن نرود */
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
   .wrapper {
     padding-bottom: calc(12px + env(safe-area-inset-bottom));

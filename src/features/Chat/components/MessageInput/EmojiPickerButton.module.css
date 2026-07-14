@@ -27,3 +27,43 @@
   left: 0;
   z-index: 100;
 }
+@media (max-width: 768px) {
+  .popup {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: none;
+    display: flex;
+    justify-content: center;
+    background: var(--surface);
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.25);
+    padding: 12px;
+    animation: emojiUp 0.25s ease;
+  }
+  .popup :global(.EmojiPickerReact) {
+    width: 100% !important;
+    max-width: 420px;
+    height: min(45vh, 380px) !important;
+  }
+}
+/* 400px */
+@media (max-width: 400px) {
+  .button {
+    width: 30px;
+    height: 30px;
+  }
+}
+@keyframes emojiUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -255,6 +255,27 @@
   }
 }
 
+/* reaction style */
+.reactions {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.reaction {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  cursor: pointer;
+}
+
 /* ------------------- Responsive ------------------- */
 @media (max-width: 768px) {
   .content {
@@ -306,9 +327,35 @@
     width: 190px;
   }
   .actions {
-    display: none;
+    opacity: 1;
+    pointer-events: auto;
   }
   .sender {
     font-size: 12px;
+  }
+}
+
+/* 400px */
+
+@media (max-width: 400px) {
+  .content {
+    max-width: 90%;
+  }
+
+  .text {
+    font-size: 14px;
+  }
+
+  .bubble {
+    padding: 8px 10px;
+  }
+
+  .footer {
+    font-size: 10px;
+  }
+
+  .avatar {
+    width: 30px;
+    height: 30px;
   }
 }

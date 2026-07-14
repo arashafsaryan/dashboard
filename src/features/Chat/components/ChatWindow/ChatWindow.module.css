@@ -126,7 +126,7 @@
     min-height: 0;
   }
 }
-
+/* 768px */
 @media (max-width: 768px) {
   .window {
     padding: 16px;
@@ -142,5 +142,15 @@
 
   .right {
     width: 70%;
+  }
+}
+
+/* 400px */
+@media (max-width: 400px) {
+  .window {
+    padding: 10px;
+  }
+  .messages {
+    gap: 10px;
   }
 }

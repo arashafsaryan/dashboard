@@ -7,7 +7,6 @@ import Portal from "./Portal";
 export default function MessageActions({
   onReply,
   onReaction,
-  //   onMore,
   visible,
   message,
 }) {
@@ -44,7 +43,7 @@ export default function MessageActions({
     <div className={`${styles.actions} ${visible ? styles.visible : ""}`}>
       <button
         className={`${styles.action} ${styles.react}`}
-        onClick={onReaction}
+        onClick={() => onReaction(message.id, "❤️")}
         title="React"
       >
         <Heart size={15} />

@@ -36,7 +36,6 @@ export default function MessageInput({
   const resizeTextarea = () => {
     if (!textareaRef.current) return;
 
-    // تنظیم ارتفاع روی 0 قبل از محاسبه مجدد برای کوچک شدن صحیح هنگام پاک کردن متن
     textareaRef.current.style.height = "0px";
     textareaRef.current.style.height =
       Math.min(textareaRef.current.scrollHeight, 140) + "px";
@@ -44,7 +43,7 @@ export default function MessageInput({
 
   const resetTextarea = () => {
     if (!textareaRef.current) return;
-    textareaRef.current.style.height = "28px";
+    textareaRef.current.style.height = "40px";
   };
 
   const sendMessage = () => {

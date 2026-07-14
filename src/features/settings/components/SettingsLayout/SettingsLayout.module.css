@@ -7,6 +7,11 @@
 
   margin-top: 32px;
 }
+.settingsNavigation {
+  position: sticky;
+  top: 96px;
+  left: 0;
+}
 
 .content {
   min-width: 0;

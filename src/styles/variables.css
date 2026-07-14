@@ -11,6 +11,7 @@
   --surface-hover: #21283c;
   --skeleton-start: rgba(255, 255, 255, 0.05);
   --skeleton-middle: rgba(255, 255, 255, 0.12);
+  --chat-input-bg: rgba(25, 25, 28, 0.72);
   --primary: #6366f1;
   --primary-hover: #4f46e5;
   --success: #22c55e;
@@ -45,6 +46,7 @@
   --surface-hover: #f6f7fb;
   --skeleton-start: #e8edf5;
   --skeleton-middle: #d9e1ec;
+  --chat-input-bg: rgba(255, 255, 255, 0.72);
   --title: #000000e1;
   --text: #353535;
   --muted: #64748b;

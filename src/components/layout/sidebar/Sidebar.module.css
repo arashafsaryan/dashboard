@@ -8,11 +8,12 @@
   padding: var(--space-5) var(--space-3);
   display: flex;
   flex-direction: column;
-
+  position: sticky;
+  top: 0;
+  left: 0;
   /* استفاده مستقیم از متغیرهای تم */
   background: var(--surface);
   border-right: 1px solid var(--border);
-
   transition:
     width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
     padding 0.3s ease;
@@ -286,12 +287,12 @@
 
 .collapsed .userProfile {
   gap: 0;
-  padding: var(--space-2) 0; 
+  padding: var(--space-2) 0;
   justify-content: center;
 }
 
 .collapsed .userInfo {
-  display: none; 
+  display: none;
 }
 
 .userName {
