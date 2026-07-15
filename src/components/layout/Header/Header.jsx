@@ -9,6 +9,8 @@ export default function Header() {
   // eslint-disable-next-line no-unused-vars
   const [showNotifications, setShowNotifications] = useState(false);
   const notificationRef = useRef(null);
+  const { toggleMobileSidebar } = useSidebar();
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (
@@ -23,12 +25,15 @@ export default function Header() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  const { toggleMobileSidebar } = useSidebar();
 
   return (
     <header className={styles.header}>
       <div className={styles.left}>
-        <button className={styles.menuBtn} onClick={toggleMobileSidebar}>
+        <button 
+          className={styles.menuBtn} 
+          onClick={toggleMobileSidebar}
+          aria-label="Toggle Menu"
+        >
           <FiMenu />
         </button>
       </div>
