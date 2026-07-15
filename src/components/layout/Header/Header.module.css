@@ -8,8 +8,8 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-5);
-  background: color-mix(in srgb, var(--surface) 50%, transparent);
-  backdrop-filter: blur(7px);
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(16px);
 
   border-bottom: 1px solid var(--border);
