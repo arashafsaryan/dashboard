@@ -7,10 +7,14 @@
   border: 1px solid var(--border);
   flex-shrink: 0;
 }
+
 .button {
   position: relative;
-  width: 50px;
+  /* Content-based sizing instead of a fixed pixel width — survives longer
+     labels ("YTD", "ALL") and different locales without breaking layout. */
+  min-width: 44px;
   height: 38px;
+  padding: 0 12px;
   border: none;
   background: none;
   cursor: pointer;
@@ -18,10 +22,21 @@
   overflow: hidden;
   color: var(--muted);
   font-weight: 600;
-  transition: 0.25s;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.25s ease;
 }
 
-.button span {
+.button:hover {
+  color: var(--text);
+}
+
+.button:focus-visible {
+  outline: 2px solid #7c5cff;
+  outline-offset: 2px;
+}
+
+.text,
+.activeText {
   position: relative;
 }
 
@@ -32,6 +47,7 @@
   background: linear-gradient(135deg, #7c5cff, #5b7cff);
   box-shadow: 0 8px 25px rgba(124, 92, 255, 0.35);
 }
+
 .activeText {
   color: white;
 }
@@ -42,12 +58,19 @@
     margin-bottom: 15px;
   }
   .button {
-    width: 40px;
+    min-width: 36px;
     height: 28px;
+    padding: 0 8px;
     border-radius: 7px;
     font-weight: 600;
   }
   .active {
     border-radius: 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
   }
 }

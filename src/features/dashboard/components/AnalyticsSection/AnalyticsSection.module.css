@@ -10,6 +10,53 @@
   }
 }
 
+/* ---------------------- */
+/* Summary row */
+/* ---------------------- */
+
+.summaryRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 4px 0 16px;
+  flex-wrap: wrap;
+}
+
+.total {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.trend {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.trendUp {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.12);
+}
+
+.trendDown {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.12);
+}
+
+.trendLabel {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.errorNote {
+  font-size: 12px;
+  color: var(--muted);
+  margin: -6px 0 12px;
+}
+
 /* skeletonHeader loading */
 .skeletonHeader {
   display: flex;

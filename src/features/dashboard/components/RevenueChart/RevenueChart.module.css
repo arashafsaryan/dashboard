@@ -1,15 +1,21 @@
 .chartWrapper {
   width: 100%;
-  height: 320px;
+  /* Scales smoothly between breakpoints instead of jumping at one hard
+     media query — noticeably smoother on tablet widths. */
+  height: clamp(220px, 30vw, 320px);
   min-width: 0;
 }
 
-@media (max-width: 767px) {
-  .chartWrapper {
-    height: 260px;
-  }
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(220px, 30vw, 320px);
+  color: var(--muted);
+  font-size: 14px;
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
 }
-
 
 /* ---------------------- */
 /* Axis */
@@ -45,6 +51,7 @@
   font-weight: 700;
   color: var(--text);
 }
+
 /* ---------------------- */
 /* Active Dot */
 /* ---------------------- */
@@ -54,6 +61,37 @@
   stroke-width: 3;
   filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.55));
 }
+
+/* ---------------------- */
+/* Live pulse dot (signature element) */
+/* ---------------------- */
+
+.liveDotCore {
+  fill: #6366f1;
+  stroke: var(--surface, #0b0d12);
+  stroke-width: 2;
+}
+
+.liveDotPulse {
+  fill: none;
+  stroke: #6366f1;
+  stroke-width: 2;
+  opacity: 0.6;
+  transform-origin: center;
+  animation: pulseRing 2s ease-out infinite;
+}
+
+@keyframes pulseRing {
+  0% {
+    r: 4;
+    opacity: 0.6;
+  }
+  100% {
+    r: 12;
+    opacity: 0;
+  }
+}
+
 /* ---------------------- */
 /* Tooltip Animation */
 /* ---------------------- */
@@ -66,5 +104,15 @@
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liveDotPulse {
+    animation: none;
+    opacity: 0;
+  }
+  .tooltip {
+    animation: none;
   }
 }

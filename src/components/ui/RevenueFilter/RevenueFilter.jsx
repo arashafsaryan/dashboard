@@ -1,34 +1,43 @@
-import { motion } from "framer-motion";
+import { memo } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import styles from "./RevenueFilter.module.css";
 
-const filters = ["7D", "30D", "6M", "1Y"];
+const DEFAULT_OPTIONS = ["7D", "30D", "6M", "1Y"];
 
-export default function RevenueFilter({ active, onChange }) {
+function RevenueFilter({ active, onChange, options = DEFAULT_OPTIONS }) {
+  const prefersReducedMotion = useReducedMotion();
+  const pillTransition = prefersReducedMotion
+    ? { duration: 0 }
+    : { type: "spring", stiffness: 450, damping: 35 };
+
   return (
-    <div className={styles.wrapper}>
-      {filters.map((item) => (
-        <button
-          key={item}
-          onClick={() => onChange(item)}
-          className={styles.button}
-        >
-          {active === item && (
-            <motion.div
-              layoutId="activeRevenueFilter"
-              className={styles.active}
-              transition={{
-                type: "spring",
-                stiffness: 450,
-                damping: 35,
-              }}
-            />
-          )}
+    <div className={styles.wrapper} role="group" aria-label="Revenue period">
+      {options.map((item) => {
+        const isActive = active === item;
+        return (
+          <button
+            key={item}
+            type="button"
+            onClick={() => onChange(item)}
+            className={styles.button}
+            aria-pressed={isActive}
+          >
+            {isActive && (
+              <motion.div
+                layoutId="activeRevenueFilter"
+                className={styles.active}
+                transition={pillTransition}
+              />
+            )}
 
-          <span className={active === item ? styles.activeText : ""}>
-            {item}
-          </span>
-        </button>
-      ))}
+            <span className={isActive ? styles.activeText : styles.text}>
+              {item}
+            </span>
+          </button>
+        );
+      })}
     </div>
   );
 }
+
+export default memo(RevenueFilter);
