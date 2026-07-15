@@ -3,10 +3,9 @@ import {
   FiBarChart2,
   FiUsers,
   FiSettings,
-  FiChevronsLeft,
-  FiChevronsRight,
   FiMoreVertical,
 } from "react-icons/fi";
+import { Command, ChevronLeft, ChevronRight } from "lucide-react";
 import { IoChatboxOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import styles from "./Sidebar.module.css";
@@ -43,14 +42,28 @@ export default function Sidebar({ collapsed, setCollapsed }) {
         {/* هدر سایدبار */}
         <div className={styles.top}>
           <div className={styles.brand}>
+            {/* نشان‌واره برند (Logo Mark) */}
+            <div className={styles.logoMark}>
+              <Command
+                size={18}
+                className={styles.logoIcon}
+                strokeWidth={2.5}
+              />
+            </div>
+
+            {/* متن برند */}
             <div className={styles.brandInfo}>
               <h2>ARASH</h2>
-              <span>Workspace</span>
+              <span className={styles.badge}>Workspace</span>
             </div>
           </div>
 
-          <button className={styles.toggle} onClick={toggleSidebar}>
-            {collapsed ? <FiChevronsRight /> : <FiChevronsLeft />}
+          <button
+            className={styles.toggle}
+            onClick={toggleSidebar}
+            aria-label="Toggle Sidebar"
+          >
+            {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
           </button>
         </div>
 
