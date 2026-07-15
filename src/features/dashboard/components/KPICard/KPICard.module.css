@@ -184,6 +184,15 @@
 }
 
 /* داینامیک شدن رنگ برچسب تغییرات */
+.trendBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2px;
+}
+.changeValue {
+  line-height: 1;
+}
 .up {
   color: var(--success);
   background: color-mix(in srgb, var(--success) 12%, transparent);
