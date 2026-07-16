@@ -41,7 +41,6 @@
 .headerLeft,
 .headerRight {
   position: relative;
-  z-index: 1; /* بالاتر از glow */
 }
 
 .headerLeft {

@@ -1,0 +1,188 @@
+/* ==========================
+   Page Layout & Reset
+========================== */
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px; 
+  min-height: 100%; 
+  padding: 40px;
+  background: var(--background);
+  max-width: 1400px; 
+  margin: 0 auto;
+  width: 100%;
+}
+
+.header {
+  flex-shrink: 0;
+}
+
+/* ==========================
+   Typography & Sections
+========================== */
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.sectionTitle h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--title);
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.taskCount {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+/* ==========================
+   Toolbar & Custom Placeholders
+========================== */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.toolbarPlaceholder {
+  width: 100%;
+  padding: 18px 24px;
+  background: color-mix(in srgb, var(--surface) 40%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--border) 60%, transparent);
+  border-radius: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--primary);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ==========================
+   Content Slots (SaaS Glassmorphism look)
+========================== */
+.content,
+.completed {
+  display: flex;
+  flex-direction: column;
+}
+
+.placeholderCard,
+.placeholderCardCompleted {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--surface) 30%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 30%, transparent);
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.placeholderCardCompleted {
+  opacity: 0.7;
+}
+
+/* ==========================
+   Premium FAB (Floating Action Button)
+========================== */
+.fab {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--primary), #a855f7);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  box-shadow:
+    0 16px 32px -8px color-mix(in srgb, var(--primary) 50%, transparent),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+
+  transition: box-shadow 0.3s ease;
+}
+
+.fab:hover {
+  box-shadow:
+    0 24px 40px -6px color-mix(in srgb, var(--primary) 70%, transparent),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.fab:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+
+/* ==========================
+   Ultra-Responsive CSS
+========================== */
+@media (max-width: 1024px) {
+  .page {
+    padding: 30px;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .fab {
+    right: 24px;
+    bottom: 24px;
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 16px;
+  }
+
+  .sectionTitle h3 {
+    font-size: 16px;
+  }
+}

@@ -3,9 +3,9 @@ import Layout from "./components/layout/Layout";
 import DashboardPage from "./features/dashboard/DashboardPage";
 import SettingsPage from "./features/settings/SettingsPage";
 import { Toaster } from "sonner";
-import Analytics from "./features/Analytics/Analytics";
 import Team from "./features/Team/Team";
 import ChatPage from "./features/Chat/ChatPage";
+import TasksPage from "./features/Tasks/TasksPage";
 
 
 
@@ -14,10 +14,10 @@ export default function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<DashboardPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
-        <Route path="/analytics" element={<Analytics />} />
-        <Route path="/team" element={<Team />} />
         <Route path="/chat" element={<ChatPage />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/tasks" element={<TasksPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
       </Routes>
       <Toaster
         position="top-center"

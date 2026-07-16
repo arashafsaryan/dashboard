@@ -4,7 +4,6 @@ import styles from "./HeaderActions.module.css";
 import ThemeToggle from "../../ui/ThemeToggle/ThemeToggle";
 import NotificationPanel from "../../ui/NotificationPanel/NotificationPanel";
 import UserMenu from "./UserMenu/UserMenu";
-import { BsStars } from "react-icons/bs";
 import { TfiBell } from "react-icons/tfi";
 import {
   useFloating,
@@ -21,7 +20,7 @@ export default function HeaderActions() {
   const { refs, floatingStyles } = useFloating({
     open: showNotifications,
     whileElementsMounted: autoUpdate,
-    placement: "bottom-end",
+    placement: "bottom",
     middleware: [
       offset(12),
       flip(),
@@ -64,19 +63,18 @@ export default function HeaderActions() {
         </button>
 
         <span className={styles.badge}>4</span>
-
         {showNotifications && (
           <FloatingPortal>
-            <div ref={refs.setFloating} style={floatingStyles}>
+            <div
+              ref={refs.setFloating}
+              style={{ ...floatingStyles, zIndex: 9999 }} // z-index اضافه شد
+            >
               <NotificationPanel />
             </div>
           </FloatingPortal>
         )}
       </div>
       <ThemeToggle />
-      <button className={styles.iconButton}>
-        <BsStars />
-      </button>
       <UserMenu />
     </div>
   );

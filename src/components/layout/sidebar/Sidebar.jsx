@@ -13,9 +13,9 @@ import { useSidebar } from "../../../context/SidebarContext";
 
 const menu = [
   { label: "Dashboard", icon: <FiHome />, path: "/" },
-  { label: "Analytics", icon: <FiBarChart2 />, path: "/Analytics" },
   { label: "Chat", icon: <IoChatboxOutline />, path: "/Chat", badge: 3 },
   { label: "Team", icon: <FiUsers />, path: "/Team" },
+  { label: "tasks", icon: <FiBarChart2 />, path: "/tasks" },
   { label: "Settings", icon: <FiSettings />, path: "/Settings" },
 ];
 
