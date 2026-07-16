@@ -1,0 +1,58 @@
+/* ==========================
+   Dynamic Grid Layout
+========================== */
+.gridContainer {
+  display: grid;
+  /* جادوی CSS Grid: 
+    کارت‌ها حداقل 320 پیکسل عرض دارند. اگر جا بود، در همان ردیف قرار می‌گیرند (1fr)، 
+    در غیر این صورت به صورت خودکار به خط بعد می‌شکنند. کاملاً ریسپانسیو بدون Media Query!
+  */
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  width: 100%;
+  padding-bottom: 24px; /* برای اینکه دکمه FAB روی کارت‌های آخر نیفتد */
+}
+
+/* ==========================
+   Empty State Design
+========================== */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 300px;
+  padding: 40px;
+
+  background: color-mix(in srgb, var(--surface) 20%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--border) 40%, transparent);
+  border-radius: 24px;
+}
+
+.emptyIconBox {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--muted) 10%, transparent);
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.emptyState h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--title);
+  margin: 0 0 8px 0;
+}
+
+.emptyState p {
+  font-size: 14px;
+  color: var(--muted);
+  max-width: 300px;
+  margin: 0;
+  line-height: 1.5;
+}

@@ -1,0 +1,161 @@
+/* ==========================
+   Wrapper & Layout
+========================== */
+.toolbarWrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  flex-wrap: wrap; /* در موبایل فیلترها می‌روند خط پایین */
+}
+
+/* ==========================
+   Smart Search Container
+========================== */
+.searchContainer {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  height: 48px;
+
+  background: color-mix(in srgb, var(--surface) 50%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  border-radius: 14px;
+
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* جادوی CSS: وقتی کاربر داخل اینپوت تایپ می‌کند، کل کانتینر درخشان می‌شود */
+.searchContainer:focus-within {
+  border-color: var(--primary);
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 15%, transparent);
+}
+
+.searchIcon {
+  color: var(--muted);
+  transition: color 0.3s ease;
+}
+
+.searchContainer:focus-within .searchIcon {
+  color: var(--primary);
+}
+
+.searchInput {
+  flex-grow: 1;
+  height: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: color-mix(in srgb, var(--muted) 70%, transparent);
+}
+
+.clearBtn {
+  background: color-mix(in srgb, var(--muted) 20%, transparent);
+  border: none;
+  color: var(--text);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clearBtn:hover {
+  background: color-mix(in srgb, var(--warning) 20%, transparent);
+  color: var(--warning);
+}
+
+/* ==========================
+   Quick Filters (Chips)
+========================== */
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filterBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  height: 48px;
+  border-radius: 14px;
+  background: transparent;
+  border: 1px dashed color-mix(in srgb, var(--border) 80%, transparent);
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filterBtn:hover {
+  border-style: solid;
+  border-color: var(--border);
+  color: var(--text);
+  background: color-mix(in srgb, var(--surface-hover) 50%, transparent);
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border);
+  margin: 0 4px;
+}
+
+.chip {
+  padding: 0 16px;
+  height: 48px;
+  border-radius: 14px;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.chip:hover {
+  background: color-mix(in srgb, var(--surface-hover) 80%, transparent);
+  color: var(--text);
+}
+
+.activeChip {
+  background: color-mix(in srgb, var(--text) 10%, transparent);
+  color: var(--text);
+  border-color: var(--text);
+}
+
+/* ==========================
+   Responsive
+========================== */
+@media (max-width: 768px) {
+  .searchContainer,
+  .chip,
+  .filterBtn {
+    height: 42px; /* در موبایل کمی جمع‌وجورتر شود */
+  }
+  .filters {
+    width: 100%;
+    overflow-x: auto; /* اسکرول افقی فیلترها در موبایل */
+    padding-bottom: 4px;
+  }
+  .filters::-webkit-scrollbar {
+    display: none;
+  }
+}

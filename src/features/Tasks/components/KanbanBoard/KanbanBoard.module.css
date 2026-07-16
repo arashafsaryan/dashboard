@@ -1,0 +1,115 @@
+/* ==========================
+   Board Layout (Horizontal Scroll)
+========================== */
+.boardContainer {
+  display: flex;
+  gap: 24px;
+  height: 100%;
+  /* min-height: 650px; */
+  overflow-x: auto; /* اگر در آینده ستون‌های بیشتری اضافه شد، افقی اسکرول بخورد */
+  padding-bottom: 24px;
+}
+
+/* مخفی کردن اسکرول‌بار افقی کلفت مرورگر و جایگزینی با نسخه ظریف */
+.boardContainer::-webkit-scrollbar {
+  height: 6px;
+}
+.boardContainer::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--border) 60%, transparent);
+  border-radius: 10px;
+}
+
+/* ==========================
+   Column Design
+========================== */
+.column {
+  flex: 1;
+  min-width: 340px; /* حداقل عرض تا کارت‌ها فشرده نشوند */
+  max-width: 420px; /* حداکثر عرض تا در مانیتورهای بزرگ ستون‌ها خیلی کش نیابند */
+  display: flex;
+  flex-direction: column;
+
+  /* پس‌زمینه بسیار محو برای جدا کردن حریم ستون‌ها */
+  background: color-mix(in srgb, var(--surface) 15%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--border) 40%, transparent);
+  border-radius: 24px;
+  padding: 20px;
+}
+
+/* ==========================
+   Column Header
+========================== */
+.columnHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 0 4px;
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.statusIndicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.columnTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--title);
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.taskCount {
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+}
+
+/* ==========================
+   Column Body (Vertical Scroll)
+========================== */
+.columnBody {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-grow: 1;
+  overflow-y: auto; /* اگر تسک‌های یک ستون زیاد شد، فقط همان ستون اسکرول بخورد */
+  padding: 4px; /* برای اینکه سایه کارت‌ها (box-shadow) قطع نشود */
+}
+
+/* اسکرول‌بار ظریف برای داخل ستون‌ها */
+.columnBody::-webkit-scrollbar {
+  width: 4px;
+}
+.columnBody::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--border) 80%, transparent);
+  border-radius: 10px;
+}
+
+/* ==========================
+   Empty Column State
+========================== */
+.emptyColumn {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed color-mix(in srgb, var(--border) 50%, transparent);
+  border-radius: 16px;
+  color: color-mix(in srgb, var(--muted) 60%, transparent);
+  font-size: 14px;
+  font-weight: 500;
+  min-height: 120px;
+}

@@ -5,11 +5,10 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 32px; 
-  min-height: 100%; 
-  padding: 40px;
+  gap: 32px;
+  min-height: 100%;
   background: var(--background);
-  max-width: 1400px; 
+  max-width: 1400px;
   margin: 0 auto;
   width: 100%;
 }
@@ -50,8 +49,8 @@
 ========================== */
 .toolbar {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  align-items: baseline;
+  gap: 10px;
   width: 100%;
 }
 
@@ -152,6 +151,42 @@
   outline-offset: 4px;
 }
 
+/* Switcher style */
+
+.viewSwitcher {
+  display: flex;
+  align-items: center;
+  background: color-mix(in srgb, var(--surface) 40%, transparent);
+  padding: 6px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+}
+
+.switchBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.switchBtn:hover {
+  color: var(--text);
+}
+
+.switchBtn.active {
+  background: color-mix(in srgb, var(--primary) 15%, transparent);
+  color: var(--primary);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 15%, transparent);
+}
+
 /* ==========================
    Ultra-Responsive CSS
 ========================== */
@@ -174,6 +209,9 @@
     width: 54px;
     height: 54px;
     border-radius: 16px;
+  }
+  .viewSwitcher {
+    display: none !important;
   }
 }
 

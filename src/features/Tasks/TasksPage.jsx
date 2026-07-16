@@ -1,9 +1,16 @@
-import { Plus } from "lucide-react";
-import { motion } from "framer-motion";
-import FocusCard from "./components/FocusCard/FocusCard";
+// مسیر: TasksPage.jsx
+import { useEffect } from "react";
 import styles from "./TasksPage.module.css";
+import { useTasks } from "./hooks/useTasks";
+import { Plus, LayoutList, LayoutGrid } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import FocusCard from "./components/FocusCard/FocusCard";
+import TaskSearch from "./components/TaskSearch/TaskSearch";
+import TaskList from "./components/TaskList/TaskList";
+import KanbanBoard from "./components/KanbanBoard/KanbanBoard";
+import AddTaskModal from "./components/AddTaskModal/AddTaskModal";
 
-// تنظیمات انیمیشن ارکسترال کل صفحه
+// انیمیشن‌های صفحه (از قبل داشتیم)
 const pageVariants = {
   hidden: { opacity: 0, y: 15 },
   visible: {
@@ -13,7 +20,7 @@ const pageVariants = {
       type: "spring",
       stiffness: 260,
       damping: 25,
-      staggerChildren: 0.12, // لود آبشاری سکشن‌های مختلف صفحه
+      staggerChildren: 0.12,
     },
   },
 };
@@ -28,6 +35,31 @@ const sectionVariants = {
 };
 
 export default function TasksPage() {
+  const {
+    tasks,
+    viewMode,
+    setViewMode,
+    isAddModalOpen,
+    setIsAddModalOpen,
+    addTask,
+    searchQuery,
+    setSearchQuery,
+    filterStatus,
+    setFilterStatus,
+  } = useTasks();
+
+  // مانیتور کردن سایز صفحه برای جلوگیری از نمایش حالت بورد در موبایل
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768 && viewMode === "board") {
+        setViewMode("list");
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, [viewMode, setViewMode]);
+
   return (
     <motion.main
       className={styles.page}
@@ -35,48 +67,86 @@ export default function TasksPage() {
       initial="hidden"
       animate="visible"
     >
-      {/* هدر صفحه به همراه کارت تمرکز */}
+      {/* 1. Header & Focus Card */}
       <motion.header className={styles.header} variants={sectionVariants}>
         <FocusCard />
       </motion.header>
 
-      {/* بخش ابزارها، فیلترها و سرچ */}
+      {/* 2. Toolbar (Search & View Switcher) */}
       <motion.section className={styles.toolbar} variants={sectionVariants}>
-        <div className={styles.toolbarPlaceholder}>
-          <span className={styles.pulseDot} />
-          Search & Filters (Component Slot)
+        <TaskSearch
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          filterStatus={filterStatus}
+          setFilterStatus={setFilterStatus}
+        />
+        <div className={styles.viewSwitcher}>
+          <button
+            className={`${styles.switchBtn} ${viewMode === "list" ? styles.active : ""}`}
+            onClick={() => setViewMode("list")}
+          >
+            <LayoutList size={18} />
+            <span>List</span>
+          </button>
+          <button
+            className={`${styles.switchBtn} ${styles.boardBtn} ${viewMode === "board" ? styles.active : ""}`}
+            onClick={() => setViewMode("board")}
+          >
+            <LayoutGrid size={18} />
+            <span>Board</span>
+          </button>
         </div>
       </motion.section>
-
-      {/* لیست کارهای فعال */}
-      <motion.section className={styles.content} variants={sectionVariants}>
-        <div className={styles.sectionTitle}>
-          <h3>Active Tasks</h3>
-          <span className={styles.taskCount}>8 Tasks remaining</span>
-        </div>
-        <div className={styles.placeholderCard}>Task List (Component Slot)</div>
+      {/* 3. Dynamic Content Area (List OR Kanban) */}
+      <motion.section className={styles.contentArea} variants={sectionVariants}>
+        <AnimatePresence mode="wait">
+          {viewMode === "list" ? (
+            <motion.div
+              key="list-view"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.2 }}
+            >
+              {/* ارسال دیتای تسک‌ها به کامپوننت لیست */}
+              <TaskList tasks={tasks} />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="board-view"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.2 }}
+            >
+              {/* ارسال دیتای تسک‌ها به کامپوننت بورد */}
+              <KanbanBoard tasks={tasks} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.section>
 
-      {/* کارهای انجام شده */}
-      <motion.section className={styles.completed} variants={sectionVariants}>
-        <div className={styles.sectionTitle}>
-          <h3>Recently Completed</h3>
-        </div>
-        <div className={styles.placeholderCardCompleted}>
-          Completed (Component Slot)
-        </div>
-      </motion.section>
-
-      {/* دکمه شناور پریمیوم و انیمیت شده */}
+      {/* 4. FAB Button (Triggers Add Modal) */}
       <motion.button
         className={styles.fab}
         variants={sectionVariants}
         whileHover={{ scale: 1.08, y: -4 }}
         whileTap={{ scale: 0.95 }}
-        aria-label="Create new task"
+        onClick={() => setIsAddModalOpen(true)}
       >
         <Plus size={24} strokeWidth={2.5} />
       </motion.button>
+
+      {/* 5. Add Task Modal */}
+      {/* در صورتی که true باشد رندر می‌شود */}
+      <AnimatePresence>
+        {isAddModalOpen && (
+          <AddTaskModal
+            onClose={() => setIsAddModalOpen(false)}
+            onAdd={addTask}
+          />
+        )}
+      </AnimatePresence>
     </motion.main>
   );
 }

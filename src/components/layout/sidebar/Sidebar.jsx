@@ -1,10 +1,10 @@
 import {
   FiHome,
-  FiBarChart2,
   FiUsers,
   FiSettings,
   FiMoreVertical,
 } from "react-icons/fi";
+import { FaTasks } from "react-icons/fa";
 import { Command, ChevronLeft, ChevronRight } from "lucide-react";
 import { IoChatboxOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
@@ -15,7 +15,7 @@ const menu = [
   { label: "Dashboard", icon: <FiHome />, path: "/" },
   { label: "Chat", icon: <IoChatboxOutline />, path: "/Chat", badge: 3 },
   { label: "Team", icon: <FiUsers />, path: "/Team" },
-  { label: "tasks", icon: <FiBarChart2 />, path: "/tasks" },
+  { label: "tasks", icon: <FaTasks />, path: "/tasks" },
   { label: "Settings", icon: <FiSettings />, path: "/Settings" },
 ];
 
