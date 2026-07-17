@@ -1,33 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { X, Calendar, Flag, Tag } from "lucide-react";
 import { motion } from "framer-motion";
 import styles from "./AddTaskModal.module.css";
 
-// تنظیمات انیمیشن برای پس‌زمینه تاریک (Backdrop)
-const backdropVariants = {
+const overlayVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
-
-// تنظیمات انیمیشن برای خود پنجره مودال
-const modalVariants = {
-  hidden: { opacity: 0, scale: 0.95, y: 20 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 300, damping: 25 },
-  },
-  exit: {
-    opacity: 0,
-    scale: 0.95,
-    y: 20,
-    transition: { duration: 0.2 },
-  },
+  visible: { opacity: 1, transition: { duration: 0.2 } },
 };
 
 export default function AddTaskModal({ onClose, onAdd }) {
-  // مدیریت استیت‌های فرم
+  const [mounted, setMounted] = useState(false);
+  
   const [formData, setFormData] = useState({
     title: "",
     category: "",
@@ -35,44 +19,47 @@ export default function AddTaskModal({ onClose, onAdd }) {
     dueDate: "",
   });
 
-  // هندل کردن تغییرات اینپوت‌ها
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // ارسال فرم
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.title.trim()) return; // جلوگیری از ثبت تسک خالی
-
-    // ارسال دیتا به تابع والد (addTask)
+    if (!formData.title.trim()) return;
+    
     onAdd({
       title: formData.title,
       category: formData.category || "General",
       priority: formData.priority,
       dueDate: formData.dueDate || "No date",
-      status: "todo", // به صورت پیش‌فرض تسک جدید در حالت To Do قرار می‌گیرد
-      tags: [], // می‌توانید بعداً قابلیت اضافه کردن تگ را هم به فرم اضافه کنید
+      status: "todo",
+      tags: [],
     });
   };
 
-  return (
-    <motion.div
-      className={styles.backdrop}
-      variants={backdropVariants}
+  if (!mounted) return null;
+  const modalContent = (
+    <motion.div 
+      className={styles.overlay}
+      variants={overlayVariants}
       initial="hidden"
       animate="visible"
       exit="hidden"
-      onClick={onClose} // کلیک روی فضای خالی مودال را می‌بندد
+      onClick={onClose}
     >
-      <motion.div
+      <div 
         className={styles.modal}
-        variants={modalVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-        onClick={(e) => e.stopPropagation()} // جلوگیری از بسته شدن هنگام کلیک روی خود مودال
+        onClick={(e) => e.stopPropagation()}
       >
         <div className={styles.header}>
           <h3>Create New Task</h3>
@@ -82,7 +69,6 @@ export default function AddTaskModal({ onClose, onAdd }) {
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
-          {/* فیلد عنوان تسک */}
           <div className={styles.inputGroup}>
             <label htmlFor="title">Task Title</label>
             <input
@@ -98,7 +84,6 @@ export default function AddTaskModal({ onClose, onAdd }) {
           </div>
 
           <div className={styles.row}>
-            {/* فیلد دسته‌بندی */}
             <div className={styles.inputGroup}>
               <label htmlFor="category">
                 <Tag size={14} /> Category
@@ -114,7 +99,6 @@ export default function AddTaskModal({ onClose, onAdd }) {
               />
             </div>
 
-            {/* فیلد تاریخ */}
             <div className={styles.inputGroup}>
               <label htmlFor="dueDate">
                 <Calendar size={14} /> Due Date
@@ -131,58 +115,28 @@ export default function AddTaskModal({ onClose, onAdd }) {
             </div>
           </div>
 
-          {/* فیلد انتخاب میزان اهمیت */}
           <div className={styles.inputGroup}>
             <label htmlFor="priority">
               <Flag size={14} /> Priority Level
             </label>
             <div className={styles.radioGroup}>
-              <label
-                className={`${styles.radioLabel} ${formData.priority === "low" ? styles.activeLow : ""}`}
-              >
-                <input
-                  type="radio"
-                  name="priority"
-                  value="low"
-                  checked={formData.priority === "low"}
-                  onChange={handleChange}
-                />
+              <label className={`${styles.radioLabel} ${formData.priority === 'low' ? styles.activeLow : ''}`}>
+                <input type="radio" name="priority" value="low" checked={formData.priority === 'low'} onChange={handleChange} />
                 Low
               </label>
-              <label
-                className={`${styles.radioLabel} ${formData.priority === "medium" ? styles.activeMedium : ""}`}
-              >
-                <input
-                  type="radio"
-                  name="priority"
-                  value="medium"
-                  checked={formData.priority === "medium"}
-                  onChange={handleChange}
-                />
+              <label className={`${styles.radioLabel} ${formData.priority === 'medium' ? styles.activeMedium : ''}`}>
+                <input type="radio" name="priority" value="medium" checked={formData.priority === 'medium'} onChange={handleChange} />
                 Medium
               </label>
-              <label
-                className={`${styles.radioLabel} ${formData.priority === "high" ? styles.activeHigh : ""}`}
-              >
-                <input
-                  type="radio"
-                  name="priority"
-                  value="high"
-                  checked={formData.priority === "high"}
-                  onChange={handleChange}
-                />
+              <label className={`${styles.radioLabel} ${formData.priority === 'high' ? styles.activeHigh : ''}`}>
+                <input type="radio" name="priority" value="high" checked={formData.priority === 'high'} onChange={handleChange} />
                 High
               </label>
             </div>
           </div>
 
-          {/* دکمه‌های اکشن */}
           <div className={styles.footer}>
-            <button
-              type="button"
-              className={styles.cancelBtn}
-              onClick={onClose}
-            >
+            <button type="button" className={styles.cancelBtn} onClick={onClose}>
               Cancel
             </button>
             <button type="submit" className={styles.submitBtn}>
@@ -190,7 +144,9 @@ export default function AddTaskModal({ onClose, onAdd }) {
             </button>
           </div>
         </form>
-      </motion.div>
+      </div>
     </motion.div>
   );
+
+  return createPortal(modalContent, document.body);
 }
