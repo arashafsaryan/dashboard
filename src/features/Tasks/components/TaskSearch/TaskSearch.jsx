@@ -15,7 +15,6 @@ export default function TaskSearch({
       {/* باکس اصلی جستجو */}
       <div className={styles.searchContainer}>
         <Search size={18} className={styles.searchIcon} />
-
         <input
           type="text"
           placeholder="Search tasks, categories, or tags..."

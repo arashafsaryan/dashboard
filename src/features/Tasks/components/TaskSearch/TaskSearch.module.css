@@ -4,13 +4,14 @@
 .toolbarWrapper {
   display: flex;
   align-items: center;
+  margin-top: 30px;
   gap: 16px;
   width: 100%;
   flex-wrap: wrap; /* در موبایل فیلترها می‌روند خط پایین */
 }
 
 /* ==========================
-   Smart Search Container
+   Search Container
 ========================== */
 .searchContainer {
   flex-grow: 1;
@@ -19,11 +20,9 @@
   gap: 12px;
   padding: 0 16px;
   height: 48px;
-
   background: color-mix(in srgb, var(--surface) 50%, transparent);
   border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
   border-radius: 14px;
-
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -138,7 +137,7 @@
 .activeChip {
   background: color-mix(in srgb, var(--text) 10%, transparent);
   color: var(--text);
-  border-color: var(--text);
+  border: 1px solid #3474ff7a;
 }
 
 /* ==========================
@@ -148,7 +147,7 @@
   .searchContainer,
   .chip,
   .filterBtn {
-    height: 42px; /* در موبایل کمی جمع‌وجورتر شود */
+    height: 42px;
   }
   .filters {
     width: 100%;
@@ -157,5 +156,10 @@
   }
   .filters::-webkit-scrollbar {
     display: none;
+  }
+}
+@media (max-width: 450px) {
+  .chip {
+    font-size: 12px;
   }
 }

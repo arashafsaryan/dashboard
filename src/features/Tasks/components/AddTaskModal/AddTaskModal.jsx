@@ -86,7 +86,6 @@ export default function AddTaskModal({ onClose, onAdd }) {
           <div className={styles.inputGroup}>
             <label htmlFor="title">Task Title</label>
             <input
-              autoFocus
               type="text"
               id="title"
               name="title"

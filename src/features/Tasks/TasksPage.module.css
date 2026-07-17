@@ -192,14 +192,12 @@
 ========================== */
 @media (max-width: 1024px) {
   .page {
-    padding: 30px;
     gap: 24px;
   }
 }
 
 @media (max-width: 768px) {
   .page {
-    padding: 20px;
     gap: 20px;
   }
 
@@ -216,10 +214,6 @@
 }
 
 @media (max-width: 480px) {
-  .page {
-    padding: 16px;
-  }
-
   .sectionTitle h3 {
     font-size: 16px;
   }
