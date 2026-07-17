@@ -3,14 +3,10 @@
 ========================== */
 .gridContainer {
   display: grid;
-  /* جادوی CSS Grid: 
-    کارت‌ها حداقل 320 پیکسل عرض دارند. اگر جا بود، در همان ردیف قرار می‌گیرند (1fr)، 
-    در غیر این صورت به صورت خودکار به خط بعد می‌شکنند. کاملاً ریسپانسیو بدون Media Query!
-  */
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 24px;
   width: 100%;
-  padding-bottom: 24px; /* برای اینکه دکمه FAB روی کارت‌های آخر نیفتد */
+  padding-bottom: 24px;
 }
 
 /* ==========================
@@ -55,4 +51,9 @@
   max-width: 300px;
   margin: 0;
   line-height: 1.5;
+}
+@media (max-width: 350px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+  }
 }

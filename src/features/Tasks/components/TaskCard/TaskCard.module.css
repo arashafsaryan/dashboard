@@ -7,7 +7,7 @@
   gap: 16px;
   padding: 24px;
   border-radius: 20px;
-
+ 
   /* افکت شیشه‌ای بسیار جذاب */
   background: color-mix(in srgb, var(--surface) 40%, transparent);
   backdrop-filter: blur(16px);
@@ -211,5 +211,4 @@
 .progressFill {
   height: 100%;
   border-radius: 99px;
-  /* استایل نوری در کامپوننت React به صورت Inline داینامیک داده شده است */
 }

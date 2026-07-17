@@ -100,6 +100,8 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .filterBtn:hover {
@@ -127,6 +129,8 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .chip:hover {
@@ -149,17 +153,25 @@
   .filterBtn {
     height: 42px;
   }
+
   .filters {
     width: 100%;
-    overflow-x: auto; /* اسکرول افقی فیلترها در موبایل */
-    padding-bottom: 4px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; 
+
+    padding-bottom: 8px; 
   }
+
   .filters::-webkit-scrollbar {
     display: none;
   }
 }
+
 @media (max-width: 450px) {
-  .chip {
-    font-size: 12px;
+  .chip,
+  .filterBtn {
+    font-size: 13px;
+    padding: 0 12px;
   }
 }
