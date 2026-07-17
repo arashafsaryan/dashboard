@@ -1,28 +1,63 @@
 /* ==========================
-   Backdrop & Modal Container
+   1. Backdrop (پس‌زمینه تاریک پشت مودال)
 ========================== */
 .backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
-  isolation: isolate;
   z-index: 1000;
   padding: 20px;
+
+  /* رنگ زاپاس: اگر مرورگر موبایل بلور را پشتیبانی نکرد یا غیرفعال بود، 
+     پس‌زمینه کاملاً تیره (80%) می‌شود تا مودال کاملاً خوانا بماند */
+  background: rgba(0, 0, 0, 0.8);
+
+  /* فعال‌سازی GPU (Hardware Acceleration) ایمن برای Framer Motion */
+  will-change: backdrop-filter;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
+/* اعمال بلور فقط زمانی که مرورگر از آن پشتیبانی کند */
+@supports (backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px)) {
+  .backdrop {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+/* ==========================
+   2. Modal Container (پنجره اصلی)
+========================== */
 .modal {
   width: 100%;
   max-width: 500px;
-  background: color-mix(in srgb, var(--surface) 80%, transparent);
-  border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
   border-radius: 24px;
   box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+  position: relative;
+
+  /* رنگ زاپاس: توپُر و سالید (بدون شفافیت) تا اگر بلور خراب شد، متن‌های داخل مودال ناخوانا نشوند */
+  background: var(--surface);
+  border: 1px solid var(--border);
+
+  /* فعال‌سازی GPU */
+  will-change: transform, backdrop-filter;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* شیشه‌ای کردن خود پنجره مودال به صورت ایمن */
+@supports (backdrop-filter: blur(24px)) or (-webkit-backdrop-filter: blur(24px)) {
+  .modal {
+    background: color-mix(in srgb, var(--surface) 80%, transparent);
+    border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
 }
 
 /* ==========================
@@ -102,6 +137,8 @@
   font-size: 14px;
   transition: all 0.3s ease;
   outline: none;
+  /* جلوگیری از زوم شدن خودکار در آیفون */
+  font-size: 16px;
 }
 
 .input::placeholder {
@@ -135,17 +172,18 @@
   font-weight: 600;
   color: var(--muted);
   transition: all 0.2s;
+  /* جلوگیری از هایلایت شدن متن در موبایل موقع تاچ */
+  -webkit-tap-highlight-color: transparent;
 }
 
 .radioLabel input {
-  display: none; /* مخفی کردن دکمه رادیویی پیش‌فرض مرورگر */
+  display: none;
 }
 
 .radioLabel:hover {
   background: color-mix(in srgb, var(--surface-hover) 50%, transparent);
 }
 
-/* استایل حالت فعال برای هر سطح اهمیت */
 .activeLow {
   background: color-mix(in srgb, var(--success) 15%, transparent);
   color: var(--success);
@@ -185,6 +223,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .cancelBtn:hover {
@@ -201,9 +240,19 @@
   cursor: pointer;
   transition: all 0.2s;
   box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 30%, transparent);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .submitBtn:hover {
   filter: brightness(1.1);
   transform: translateY(-1px);
+}
+
+/* ==========================
+   Responsive adjustments
+========================== */
+@media (max-width: 500px) {
+  .row {
+    grid-template-columns: 1fr; /* در موبایل فیلدهای کنار هم زیر هم قرار می‌گیرند */
+  }
 }
