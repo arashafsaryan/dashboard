@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Brain, CircleCheckBig, Flame, Target, Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
+// هوک‌های جدید را از framer-motion اضافه کردیم
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import styles from "./FocusCard.module.css";
 
 // ==========================================
@@ -12,7 +13,7 @@ const containerVariants = {
     opacity: 1,
     transition: {
       when: "beforeChildren",
-      staggerChildren: 0.15, // فاصله زمانی لود شدن هر آیتم (آبشاری)
+      staggerChildren: 0.15,
     },
   },
 };
@@ -28,7 +29,13 @@ const itemVariants = {
 
 export default function FocusCard({ userName = "Arash" }) {
   const [greeting, setGreeting] = useState("Good Evening");
-  const [percent, setPercent] = useState(0);
+
+  // ۱. مقدار درصد هدف را در یک متغیر ذخیره می‌کنیم
+  const targetPercent = 72;
+
+  // ۲. استفاده از مقادیر متحرک Framer Motion به جای useState
+  const count = useMotionValue(0);
+  const roundedPercent = useTransform(count, Math.round);
 
   useEffect(() => {
     const hour = new Date().getHours();
@@ -37,17 +44,22 @@ export default function FocusCard({ userName = "Arash" }) {
     else if (hour < 18) setGreeting("Good Afternoon");
     else setGreeting("Good Evening");
 
-    // انیمیشن شمارش عدد درصد
-    const timer = setTimeout(() => setPercent(72), 300);
-    return () => clearTimeout(timer);
-  }, []);
+    // ۳. انیمیشن شمارش عدد دقیقا هماهنگ با انیمیشن دایره
+    const controls = animate(count, targetPercent, {
+      duration: 1.5, // مدت زمان انیمیشن (برابر با دایره)
+      ease: "easeOut", // نوع حرکت (برابر با دایره)
+      delay: 0.4, // تاخیر شروع (برابر با دایره)
+    });
+
+    // پاکسازی انیمیشن در صورت unmount شدن کامپوننت
+    return controls.stop;
+  }, [count, targetPercent]);
 
   const radius = 50;
   const circumference = 2 * Math.PI * radius;
-  const targetOffset = circumference - (72 / 100) * circumference;
+  const targetOffset = circumference - (targetPercent / 100) * circumference;
 
   return (
-    // تبدیل تگ section به motion.section به عنوان کانتینر اصلی
     <motion.section
       className={styles.card}
       variants={containerVariants}
@@ -118,7 +130,6 @@ export default function FocusCard({ userName = "Arash" }) {
 
             <circle cx="60" cy="60" r={radius} className={styles.track} />
 
-            {/* استفاده از motion.circle برای انیمیشن نرم SVG */}
             <motion.circle
               cx="60"
               cy="60"
@@ -128,13 +139,16 @@ export default function FocusCard({ userName = "Arash" }) {
               style={{ strokeDasharray: circumference }}
               initial={{ strokeDashoffset: circumference }}
               animate={{ strokeDashoffset: targetOffset }}
+              // ۴. زمان‌بندی این بخش با شمارشگر متن تنظیم شده است
               transition={{ duration: 1.5, ease: "easeOut", delay: 0.4 }}
             />
           </svg>
 
           <div className={styles.percent}>
-            <strong>{percent}%</strong>
-            <span>Today</span>
+            <strong>
+              <motion.span>{roundedPercent}</motion.span>%
+            </strong>
+            <span className={styles.percentLabel}>Today</span>
           </div>
         </div>
       </motion.div>

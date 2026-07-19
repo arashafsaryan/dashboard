@@ -25,7 +25,7 @@ export default function AIInsightsSection() {
     <Card>
       <SectionHeader
         title="AI Insights"
-        subtitle="Personalized recommendations generated from your workspace activity"
+        subtitle="Personalized recommendations"
       />
 
       <div className={styles.list}>

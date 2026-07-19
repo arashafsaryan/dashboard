@@ -1,71 +1,73 @@
 .item {
+  --color: #888;
+  --bg-color: rgba(136, 136, 136, 0.1);
+
   display: flex;
-  gap: 14px;
-  padding: 12px;
-  border-radius: 14px;
-  transition: 0.2s;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: transparent;
+  transition: all 0.3s ease;
+  cursor: default;
+  margin-bottom: 8px;
 }
+
 .item:hover {
-  background: rgba(255, 255, 255, 0.03);
-  transform: translateX(6px);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color) 8%, transparent),
+    transparent
+  );
+  transform: translateX(4px);
 }
-.icon {
-  width: 42px;
-  height: 42px;
+
+/* تم‌های رنگی داینامیک */
+.orange {
+  --color: #f59e0b;
+  --bg-color: color-mix(in srgb, #f59e0b 15%, transparent);
+}
+.green {
+  --color: #10b981;
+  --bg-color: color-mix(in srgb, #10b981 15%, transparent);
+}
+.purple {
+  --color: #a855f7;
+  --bg-color: color-mix(in srgb, #a855f7 15%, transparent);
+}
+.brown {
+  --color: #d97706;
+  --bg-color: color-mix(in srgb, #d97706 15%, transparent);
+}
+
+.iconBox {
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 14px;
-  background: linear-gradient(
-    135deg,
-    rgba(124, 92, 255, 0.2),
-    rgba(124, 92, 255, 0.08)
-  );
-  border: 1px solid rgba(124, 92, 255, 0.18);
-  transition: 0.2s;
-  color: #7c5cff;
+  border-radius: 12px;
+  background: var(--bg-color);
+  color: var(--color);
   flex-shrink: 0;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.05);
 }
-.item:hover .icon {
-  transform: scale(1.08) rotate(8deg);
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
-.title {
-  font-size: 15px;
+
+.content h4 {
+  font-size: 14.5px;
   font-weight: 600;
-  line-height: 1.4;
+  color: var(--text);
+  margin: 0;
+  letter-spacing: -0.2px;
 }
-.time {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 6px;
+
+.content span {
   font-size: 12px;
   color: var(--muted);
-}
-
-.project {
-  background: hsla(36, 76%, 41%, 0.274);
-  color: #cca31e;
-}
-
-.task {
-  background: rgba(34, 197, 94, 0.12);
-  color: #22c55e;
-}
-
-.member {
-  background: rgba(249, 115, 22, 0.12);
-  color: #f97316;
-}
-
-.ai {
-  background: rgba(124, 92, 255, 0.12);
-  color: #7c5cff;
-}
-
-@media (max-width: 767px) {
-  .item {
-    padding: 10px;
-    gap: 12px;
-  }
 }

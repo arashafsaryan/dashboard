@@ -1,35 +1,52 @@
+import { motion } from "framer-motion";
 import styles from "./TeamMember.module.css";
 import Avatar from "../../../../components/ui/Avatar/Avatar";
 import AnimatedProgress from "../../../../components/ui/AnimatedProgress";
 import AnimatedCounter from "../../../../components/ui/AnimatedCounter";
 
 export default function TeamMember({ name, role, progress, avatar }) {
+  let themeClass;
   let gradient;
+
+  // تنظیم تم و گرادیان بر اساس درصد
   if (progress >= 90) {
-    gradient = "linear-gradient(90deg,#22c55e,#16a34a)";
+    themeClass = styles.green;
+    gradient = "linear-gradient(90deg, #10b981, #059669)"; 
   } else if (progress >= 75) {
-    gradient = "linear-gradient(90deg,#3b82f6,#2563eb)";
+    themeClass = styles.blue;
+    gradient = "linear-gradient(90deg, #3b82f6, #2563eb)";
   } else if (progress >= 60) {
-    gradient = "linear-gradient(90deg,#f59e0b,#d97706)";
+    themeClass = styles.orange;
+    gradient = "linear-gradient(90deg, #f59e0b, #d97706)";
   } else {
-    gradient = "linear-gradient(90deg,#ef4444,#dc2626)";
+    themeClass = styles.red;
+    gradient = "linear-gradient(90deg, #ef4444, #dc2626)";
   }
+
   return (
-    <div className={styles.member}>
-      <div className={styles.top}>
-        <div className={styles.info}>
+    <motion.div
+      className={`${styles.item} ${themeClass}`}
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-10px" }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      whileHover="hover"
+    >
+      <div className={styles.header}>
+        <div className={styles.infoWrapper}>
           <Avatar name={name} size="sm" progress={progress} image={avatar} />
-          <div>
+          <div className={styles.info}>
             <h4>{name}</h4>
-            <span>{role}</span>
+            <p>{role}</p>
           </div>
         </div>
-        <strong className={styles.score}>
+
+        <strong className={styles.scoreBox}>
           <AnimatedCounter value={`${progress}%`} />
-        </strong>{" "}
+        </strong>
       </div>
 
       <AnimatedProgress value={progress} delay={0.08} color={gradient} />
-    </div>
+    </motion.div>
   );
 }

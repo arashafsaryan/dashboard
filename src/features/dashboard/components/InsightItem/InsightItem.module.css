@@ -1,58 +1,115 @@
+/* ==========================
+   Base Item & Glassmorphism
+========================== */
 .item {
+  /* متغیرهای رنگی پیش‌فرض (در کلاس‌های پایین بازنویسی می‌شوند) */
+  --accent: #a855f7;
+  --accent-light: color-mix(in srgb, var(--accent) 12%, transparent);
+  --accent-glow: color-mix(in srgb, var(--accent) 30%, transparent);
+
   position: relative;
   display: flex;
   overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 18px; /* گوشه‌های گردتر و مدرن‌تر */
   background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.04),
-    rgba(255, 255, 255, 0.02)
+    145deg,
+    color-mix(in srgb, var(--surface) 70%, transparent),
+    color-mix(in srgb, var(--surface) 30%, transparent)
   );
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+  border-top-color: color-mix(in srgb, white 8%, transparent);
+  box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.1);
 
-  transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer; /* نشان‌دهنده تعاملی بودن کارت */
 }
 
+/* ==========================
+   Dynamic Theme Variants
+========================== */
+/* هوش مصنوعی (بنفش) */
+.ai {
+  --accent: #a855f7;
+}
+/* درآمد (سبز زمردی) */
+.revenue {
+  --accent: #10b981;
+}
+/* رشد (آبی) */
+.growth {
+  --accent: #3b82f6;
+}
+/* هشدار (نارنجی) */
+.warning {
+  --accent: #f59e0b;
+}
+
+/* ==========================
+   Hover Effects
+========================== */
 .item:hover {
-  transform: translateY(-3px);
-  border-color: rgba(124, 92, 255, 0.35);
-  box-shadow: 0 14px 28px rgba(124, 92, 255, 0.12);
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  box-shadow:
+    0 16px 32px -8px rgba(0, 0, 0, 0.2),
+    0 0 24px -6px var(--accent-glow);
 }
 
-.leftBorder {
-  width: 3px;
-  background: linear-gradient(180deg, #7c5cff, #5b7cff);
+/* ==========================
+   Glowing Left Edge
+========================== */
+.glowEdge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent);
+  box-shadow: 2px 0 12px var(--accent-glow);
+  border-radius: 4px 0 0 4px;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.item:hover .glowEdge {
+  width: 6px; /* در حالت هاور نوار کمی ضخیم‌تر می‌شود */
+}
+
+/* ==========================
+   Content Layout & Typography
+========================== */
 .content {
   flex: 1;
-  padding: 10px;
+  padding: 15px; /* افزایش پدینگ برای ایجاد فضای تنفس پریمیوم */
+  position: relative;
+  z-index: 1;
 }
 
 .header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 5px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-.icon {
-  width: 36px;
-  height: 36px;
+.iconBox {
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  background: rgba(124, 92, 255, 0.12);
-  color: #7c5cff;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent-light), transparent);
+  color: var(--accent);
   flex-shrink: 0;
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.05);
 }
 
-.icon svg {
+.iconBox svg {
   font-size: 18px;
+  filter: drop-shadow(0 2px 6px var(--accent-glow));
 }
 
 .titleBox {
@@ -60,35 +117,47 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .titleBox h4 {
   font-size: 15px;
-  font-weight: 600;
-  color: var(--text);
+  font-weight: 700;
+  color: var(--title);
+  margin: 0;
+  letter-spacing: -0.3px;
 }
 
 .badge {
-  padding: 5px 8px;
-  border-radius: 999px;
-  background: rgba(124, 92, 255, 0.14);
-  color: #7c5cff;
-  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 50px;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 8px;
   font-weight: 700;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
   flex-shrink: 0;
+  border: 1px solid color-mix(in srgb, var(--accent) 15%, transparent);
+  box-shadow: 0 2px 8px -2px var(--accent-glow);
 }
 
 .content p {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   line-height: 1.6;
-  margin-bottom: 5px;
+  margin: 0;
 }
 
+/* ==========================
+   Responsiveness
+========================== */
 @media (max-width: 767px) {
   .titleBox {
     flex-wrap: wrap;
     gap: 8px;
+  }
+  .content {
+    padding: 16px;
   }
 }

@@ -1,48 +1,74 @@
 /* ==========================
-   Main Card Layout
+   Main Card Layout (Super Premium Glassmorphism)
 ========================== */
 .card {
   display: grid;
-  /* اختصاص فضا: بخش آمار فضای بیشتر، نمودار ثابت، بخش AI منعطف */
   grid-template-columns: 1.2fr 240px 1.1fr;
   gap: 32px;
   padding: 36px;
-  border-radius: 28px; /* شعاع بیشتر برای طراحی مدرن‌تر */
-  background: color-mix(in srgb, var(--surface) 60%, transparent);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  border-radius: 32px; /* کمی گردتر برای حس مدرن‌تر */
+
+  /* گرادیان شیشه‌ای پیشرفته */
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--surface) 85%, transparent),
+    color-mix(in srgb, var(--surface) 40%, transparent)
+  );
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+
+  /* بوردر شیشه‌ای (بالا روشن‌تر، پایین تاریک‌تر) */
+  border: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+  border-top-color: color-mix(in srgb, white 15%, transparent);
+  border-left-color: color-mix(in srgb, white 10%, transparent);
+
+  /* سایه ترکیبی (بیرونی برای عمق، داخلی برای حجم) */
   box-shadow:
-    0 24px 48px -12px rgba(0, 0, 0, 0.2),
-    inset 0 1px 1px rgba(255, 255, 255, 0.05);
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    0 24px 48px -12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
   position: relative;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  border-color: color-mix(in srgb, var(--primary) 30%, var(--border));
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
   box-shadow:
     0 32px 64px -16px rgba(0, 0, 0, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+    inset 0 1px 1px rgba(255, 255, 255, 0.12),
+    0 0 32px -8px color-mix(in srgb, var(--primary) 20%, transparent);
 }
 
-/* هاله نوری در پس‌زمینه کارت (Ambient Glow) */
+/* هاله نوری زنده در پس‌زمینه (Ambient Glow) */
 .ambientGlow {
   position: absolute;
-  top: -50%;
+  top: -40%;
   left: 50%;
-  width: 60%;
-  height: 100%;
+  width: 80%;
+  height: 120%;
   background: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--primary) 15%, transparent) 0%,
+    ellipse at center,
+    color-mix(in srgb, var(--primary) 18%, transparent) 0%,
+    color-mix(in srgb, #a855f7 8%, transparent) 40%,
     transparent 70%
   );
   transform: translateX(-50%);
   pointer-events: none;
   z-index: 0;
+  animation: breathe 8s ease-in-out infinite alternate;
+}
+
+@keyframes breathe {
+  0% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.05);
+  }
 }
 
 .left,
@@ -68,41 +94,49 @@
   width: max-content;
   padding: 8px 16px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--primary) 15%, transparent),
+    color-mix(in srgb, var(--primary) 5%, transparent)
+  );
   color: var(--primary);
   font-size: 13px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
 .sparkleIcon {
-  animation: pulse 2s infinite;
+  animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
 }
 
 @keyframes pulse {
   0%,
   100% {
-    opacity: 0.6;
-    transform: scale(0.9);
+    opacity: 0.5;
+    transform: scale(0.85);
   }
   50% {
     opacity: 1;
     transform: scale(1.1);
+    filter: drop-shadow(0 0 4px var(--primary));
   }
 }
 
 .left h2 {
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 800;
   color: var(--title);
-  margin-bottom: 8px;
-  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+  letter-spacing: -0.8px;
+  line-height: 1.1;
 }
 
 .left p {
   font-size: 15px;
   color: var(--muted);
+  line-height: 1.5;
 }
 
 .left p strong {
@@ -114,47 +148,56 @@
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 32px;
+  margin-top: 36px;
 }
 
 .stat {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 16px 10px 10px;
-  border-radius: 16px;
-  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  padding: 10px 18px 10px 10px;
+  border-radius: 20px;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--surface) 95%, transparent),
+    color-mix(in srgb, var(--surface) 60%, transparent)
+  );
   border: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+  border-top-color: color-mix(in srgb, white 8%, transparent);
+  box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.05);
   font-size: 14px;
   font-weight: 600;
   color: var(--text);
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
 }
 
 .stat:hover {
   background: var(--surface-hover);
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
 }
 
 .iconBox {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
 }
 
 .blueBox {
-  background: color-mix(in srgb, var(--info) 15%, transparent);
+  background: color-mix(in srgb, var(--info) 18%, transparent);
   color: var(--info);
 }
 .orangeBox {
-  background: color-mix(in srgb, var(--warning) 15%, transparent);
+  background: color-mix(in srgb, var(--warning) 18%, transparent);
   color: var(--warning);
 }
 .greenBox {
-  background: color-mix(in srgb, var(--success) 15%, transparent);
+  background: color-mix(in srgb, var(--success) 18%, transparent);
   color: var(--success);
 }
 
@@ -169,8 +212,8 @@
 
 .progressCircle {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 220px; /* کمی بزرگتر برای جذابیت بیشتر */
+  height: 220px;
 }
 
 .progressCircle svg {
@@ -178,11 +221,14 @@
   height: 100%;
   transform: rotate(-90deg);
   overflow: visible;
+  filter: drop-shadow(
+    0 8px 16px color-mix(in srgb, var(--primary) 20%, transparent)
+  );
 }
 
 .track {
   fill: none;
-  stroke: color-mix(in srgb, var(--border) 60%, transparent);
+  stroke: color-mix(in srgb, var(--border) 50%, transparent);
   stroke-width: 8;
 }
 
@@ -204,19 +250,39 @@
 }
 
 .percent strong {
-  font-size: 40px;
+  display: flex;
+  align-items: baseline;
+  font-size: 48px; /* سایز بزرگتر */
   font-weight: 800;
   color: var(--title);
-  letter-spacing: -1px;
-  line-height: 1.1;
+  letter-spacing: -1.5px;
+  line-height: 1;
+  background: linear-gradient(
+    135deg,
+    var(--title) 0%,
+    color-mix(in srgb, var(--title) 60%, transparent) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.percent span {
+/* حل مشکل فونت کوچکی که با آن مواجه شدید */
+.percent strong span {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  -webkit-text-fill-color: inherit;
+}
+
+/* این کلاس جایگزین .percent span شده است */
+.percentLabel {
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  margin-top: 4px;
 }
 
 /* ==========================
@@ -231,21 +297,24 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 24px;
-  border-radius: 20px;
+  padding: 28px;
+  border-radius: 24px;
   width: 100%;
+  position: relative;
 
-  /* ایجاد بوردر گرادیانی بسیار جذاب */
+  /* بوردر گرادیانی بسیار شفاف و جذاب */
   background:
     linear-gradient(var(--surface), var(--surface)) padding-box,
     linear-gradient(
         135deg,
-        color-mix(in srgb, var(--primary) 40%, transparent),
-        color-mix(in srgb, #a855f7 10%, transparent)
+        color-mix(in srgb, var(--primary) 50%, transparent),
+        color-mix(in srgb, #a855f7 20%, transparent)
       )
       border-box;
   border: 1px solid transparent;
-  box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.02);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.05),
+    0 8px 24px -8px rgba(0, 0, 0, 0.1);
 }
 
 .aiHeader {
@@ -254,52 +323,59 @@
   gap: 12px;
   color: var(--title);
   font-weight: 700;
-  font-size: 15px;
-  margin-bottom: 12px;
+  font-size: 16px;
+  margin-bottom: 16px;
 }
 
 .aiIconWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
   background: linear-gradient(135deg, var(--primary), #a855f7);
   color: #fff;
   box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 40%, transparent);
 }
 
 .aiText {
-  font-size: 14px;
+  font-size: 14.5px;
   color: var(--muted);
-  margin-bottom: 20px;
-  line-height: 1.5;
+  margin-bottom: 24px;
+  line-height: 1.6;
 }
 
 .tip {
   position: relative;
-  padding: 14px 16px;
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--primary) 8%, transparent);
-  font-size: 13.5px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--primary) 10%, transparent),
+    color-mix(in srgb, var(--primary) 2%, transparent)
+  );
+  font-size: 14px;
   color: var(--text);
   line-height: 1.5;
-  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--primary) 10%, transparent);
 }
 
 .tipHighlight {
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
+  left: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 60%;
+  width: 4px;
   background: var(--primary);
-  border-radius: 4px 0 0 4px;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 0 8px var(--primary);
 }
 
 .tip strong {
   color: var(--title);
+  font-weight: 700;
 }
 
 /* ==========================
@@ -307,7 +383,6 @@
 ========================== */
 @media (max-width: 1200px) {
   .card {
-    /* در تبلت، AI میره پایین و دایره و اطلاعات بالا میمونن */
     grid-template-columns: 1fr 240px;
     grid-template-areas:
       "info chart"
@@ -332,26 +407,23 @@
       "chart"
       "ai";
     gap: 32px;
-    padding: 28px;
+    padding: 32px;
   }
   .center {
-    padding: 20px 0;
+    padding: 24px 0;
   }
 }
 
 @media (max-width: 480px) {
   .card {
-    padding: 20px;
+    padding: 24px;
   }
   .left h2 {
-    font-size: 26px;
+    font-size: 28px;
   }
   .progressCircle {
-    width: 180px;
-    height: 180px;
-  }
-  .percent strong {
-    font-size: 34px;
+    width: 190px;
+    height: 190px;
   }
   .stats {
     flex-direction: column;
